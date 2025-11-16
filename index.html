@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portofolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Fredoka+One&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel=""stylesheet" href="styles.css" >
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+<style>
+    body {
+      font-family: Poppins, sans-serif;
+      margin: 0;
+      background: #f0f6ff;
+      color: #000000;
+    }
+
+    header {
+      background-image: url(https://static.vecteezy.com/system/resources/previews/007/535/047/original/cool-plain-blue-background-free-vector.jpg);
+      color: #ffffff;
+      padding: 35px;
+      text-align: center;
+      border-bottom: 10px solid white;
+      animation: fadeDown 1.2s ease;
+    }
+
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      background: rgb(0, 204, 255);
+      padding: 15px 0;
+      position: sticky;
+      top: 0;
+      z-index: 99;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      animation: fadeDown 1.2s ease;
+    }
+
+    nav a {
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 600;
+      transition: .3s;
+    }
+
+    nav a:hover {
+      color: #3b6aff;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 25px;
+    }
+
+    .section-title {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 15px;
+      border-left: 7px solid #009dff;
+      padding-left: 12px;
+      font-family: 'Fredoka One', cursive;
+    }
+
+    .box {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+      margin-bottom: 40px;
+      animation: fadeUp .8s ease;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* GALLERY */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .gallery img {
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+      transition: .3s;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+
+    /* CONTACT */
+    .contact-box p {
+      margin: 8px 0;
+      font-size: 16px;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .skill-group h3 {
+      margin-top: 0;
+      color: #00c3effe;
+    }
+
+    .experience ul {
+      padding-left: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1 style="font-family:'Fredoka One'; font-size:45px;">Portofolio</h1>
+    <p>Kreativitas • Identitas • Karya Visual</p>
+  </header>
+
+  <nav>
+    <a href="#about">About Me</a>
+    <a href="#skills">Skills</a>
+    <a href="#experience">Pengalaman</a>
+    <a href="#gallery">Galeri</a>
+    <a href="#contact">Kontak</a>
+  </nav>
+
+  <div class="container">
+
+    <!-- ABOUT -->
+     <section id="About Me">
+      <h2 class ="section-title"> About Me</h2>;
+      <div class="box">
+        <p>Halo! Saya Mufid Husna Fitrianto, seorang Mahasiswa Baru yang berfokus pada Desain , Konten Visual, Personal Branding, dan Editing Video. Saya menggunakan Canva, CapCut, dan Alight Motion untuk membuat karya yang estetik dan komunikatif.</p>
+      </div>
+    </section>
+    <!-- SKILLS -->
+    <section id="skills">
+      <h2 class="section-title">Skills</h2>
+      <div class="box skills-grid">
+        <div class="skill-group">
+          <h3>Soft Skill</h3>
+          <ul>
+            <li>Komunikasi</li>
+            <li>Teamwork</li>
+            <li>Bertanggung jawab</li>
+            <li>Manajemen Waktu</li>
+            <li>Melayani Pelanggan</li>
+            <li>Bahasa Inggris</li>
+          </ul>
+        </div>
+        <div class="skill-group">
+          <h3>Hard Skill</h3>
+          <ul>
+            <li>Microsoft Word</li>
+            <li>Microsoft PowerPoint</li>
+            <li>Editor Video (Alight Motion, CapCut)</li>
+            <li>Design (Canva)</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience">
+      <h2 class="section-title">Pengalaman</h2>
+      <div class="box experience">
+        <h3>Ketua English Club</h3>
+        <ul>
+          <li>Berpartisipasi dalam diskusi & presentasi berbahasa Inggris</li>
+          <li>Menguasai grammar, speaking, dan performance</li>
+          <li>Aktif sejak 2023–2024</li>
+        </ul>
+
+        <h3>Ketua Divisi Videografi D’Gram</h3>
+        <ul>
+          <li>Disiplin, berkomitmen, dan aktif dalam multimedia</li>
+          <li>Menguasai ide, konsep, produksi, hingga publikasi</li>
+          <li>Aktif sejak 2023–2024</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section id="gallery ">
+      <h2 class="section-title">Galeri Desain</h2>
+      <div class="box gallery">
+        <img src="Semangat tak.png" alt="Desain 1">
+        <img src="profil.png" alt="Desain 2">
+        <img src="poster.png" alt="Desain 3">
+        <img src="jadwal.png" alt="Desain 4">
+      </div>
+    </section>
+
+<style>
+        .wa:hover { color: #25D366; }
+        .ig:hover { color: #E4405F; }
+        .tt:hover { color: #000000; }
+    </style> 
+    </body>
+
+<style>
+    .social-container {
+        display: flex;
+        justify-content: center; 
+        align-items: center;
+        gap: 40px;
+        margin-top: 20px;
+    }
+
+    .social-container a {
+        font-size: 50px; /* ukuran logo */
+        text-decoration: none;
+        transition: 0.3s ease;
+    }
+
+    .wa:hover { color: #25D366; }
+    .ig:hover { color: #E4405F; }
+    .tt:hover { color: #000000; }
+</style>
+
+<!-- CONTACT -->
+<section id="contact">
+    <h2 class="section-title" style="text-align:center;">Kontak</h2>
+
+    <div class="box contact-box" style="text-align:center;">
+
+        <div class="social-container">
+            <!-- WhatsApp -->
+            <a href="https://wa.me/6281803360369" target="_blank" class="wa">
+                <i class="fa-brands fa-whatsapp"></i>
+            </a>
+
+            <!-- Instagram -->
+            <a href="https://www.instagram.com/ciaofii/" target="_blank" class="ig">
+                <i class="fa-brands fa-instagram"></i>
+            </a>
+
+            <!-- TikTok -->
+            <a href="https://www.tiktok.com/@ciaoofi?is_from_webapp=1&sender_device=pc" target="_blank" class="tt">
+                <i class="fa-brands fa-tiktok"></i>
+            </a>
+        </div>
+
+    </div>
+</section>
