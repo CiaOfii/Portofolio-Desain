@@ -1,0 +1,3168 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Klinik Paramita Digital</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ========================================================= */
+/* 1. VARIABLES & RESET */
+/* ========================================================= */
+:root {
+  /* Color Palette - Colorful Friendly */
+  --primary: #4f46e5;
+  --primary-light: #818cf8;
+  --primary-dark: #3730a3;
+  --secondary: #10b981;
+  --secondary-light: #34d399;
+  --secondary-dark: #059669;
+  --accent: #f97316;
+  --accent-light: #fb923c;
+  --danger: #ef4444;
+  --warning: #f59e0b;
+  --info: #0ea5e9;
+  
+  /* Neutrals */
+  --light: #f8fafc;
+  --light-gray: #e2e8f0;
+  --gray: #94a3b8;
+  --dark-gray: #64748b;
+  --dark: #1e293b;
+  --white: #ffffff;
+  
+  /* Shadows */
+  --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+  --shadow-lg: 0 10px 25px rgba(0,0,0,0.12);
+  --shadow-xl: 0 20px 40px rgba(0,0,0,0.15);
+  
+  /* Border Radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+  
+  /* Transitions */
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background: linear-gradient(135deg, #f0f9ff 0%, #f8fafc 100%);
+  color: var(--dark);
+  line-height: 1.6;
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Background Animated Elements */
+.bg-animation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.bg-circle {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--primary-light) 0%, transparent 70%);
+  opacity: 0.1;
+  animation: float 20s infinite linear;
+}
+
+.bg-circle:nth-child(1) {
+  width: 300px;
+  height: 300px;
+  top: -100px;
+  left: -100px;
+  animation-delay: 0s;
+}
+
+.bg-circle:nth-child(2) {
+  width: 200px;
+  height: 200px;
+  top: 30%;
+  right: -50px;
+  background: radial-gradient(circle, var(--secondary-light) 0%, transparent 70%);
+  animation-delay: -5s;
+  animation-duration: 25s;
+}
+
+.bg-circle:nth-child(3) {
+  width: 150px;
+  height: 150px;
+  bottom: 20%;
+  left: 10%;
+  background: radial-gradient(circle, var(--accent-light) 0%, transparent 70%);
+  animation-delay: -10s;
+  animation-duration: 30s;
+}
+
+/* ========================================================= */
+/* 2. ANIMATIONS */
+/* ========================================================= */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-40px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(40px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  33% { transform: translate(30px, -50px) rotate(120deg); }
+  66% { transform: translate(-20px, 20px) rotate(240deg); }
+}
+
+@keyframes heartbeat {
+  0% { transform: scale(1); }
+  5% { transform: scale(1.1); }
+  10% { transform: scale(1); }
+  15% { transform: scale(1.1); }
+  20% { transform: scale(1); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Animation Classes - DISABLED SCALE IN EFFECT */
+.animate-fade-in { animation: fadeIn 0.4s var(--transition-normal); }
+.animate-slide-up { animation: slideUp 0.4s var(--transition-normal); }
+.animate-slide-down { animation: slideDown 0.4s var(--transition-normal); }
+.animate-slide-left { animation: slideInLeft 0.4s var(--transition-normal); }
+.animate-slide-right { animation: slideInRight 0.4s var(--transition-normal); }
+/* Hapus animasi scaleIn yang menyebabkan efek pop tidak nyaman */
+/* .animate-scale-in { animation: scaleIn 0.6s var(--transition-normal); } */
+.animate-pulse { animation: pulse 2s infinite; }
+.animate-bounce { animation: bounce 2s infinite; }
+.animate-heartbeat { animation: heartbeat 1.5s infinite; }
+.animate-spin { animation: spin 1s linear infinite; }
+
+/* ========================================================= */
+/* 3. TYPOGRAPHY */
+/* ========================================================= */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  line-height: 1.3;
+  margin-bottom: 1rem;
+}
+
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2rem; }
+h3 { font-size: 1.75rem; }
+h4 { font-size: 1.5rem; }
+h5 { font-size: 1.25rem; }
+h6 { font-size: 1.125rem; }
+
+p { margin-bottom: 1rem; }
+
+.text-gradient {
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ========================================================= */
+/* 4. BUTTONS */
+/* ========================================================= */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 28px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  border: none;
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.7s;
+  z-index: -1;
+}
+
+.btn:hover::before {
+  left: 100%;
+}
+
+.btn i { font-size: 1.1em; }
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  color: var(--white);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+}
+
+.btn-secondary {
+  background: linear-gradient(135deg, var(--secondary), var(--secondary-light));
+  color: var(--white);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-secondary:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+}
+
+.btn-accent {
+  background: linear-gradient(135deg, var(--accent), var(--accent-light));
+  color: var(--white);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-accent:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+}
+
+.btn-outline {
+  background: transparent;
+  border: 2px solid var(--primary);
+  color: var(--primary);
+}
+
+.btn-outline:hover {
+  background: var(--primary);
+  color: var(--white);
+  transform: translateY(-3px);
+}
+
+.btn-danger {
+  background: linear-gradient(135deg, var(--danger), #f87171);
+  color: var(--white);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-danger:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+}
+
+.btn-sm { padding: 10px 20px; font-size: 0.9rem; }
+.btn-lg { padding: 18px 36px; font-size: 1.1rem; }
+.btn-full { width: 100%; }
+
+.btn-icon {
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border-radius: var(--radius-full);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ========================================================= */
+/* 5. CARDS */
+/* ========================================================= */
+.card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: 24px;
+  transition: all var(--transition-normal);
+  border: 1px solid rgba(0,0,0,0.05);
+  position: relative;
+  overflow: hidden;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-xl);
+}
+
+.card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--dark);
+}
+
+.card-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: var(--white);
+  margin-bottom: 16px;
+}
+
+.card-icon-primary { background: linear-gradient(135deg, var(--primary), var(--primary-light)); }
+.card-icon-secondary { background: linear-gradient(135deg, var(--secondary), var(--secondary-light)); }
+.card-icon-accent { background: linear-gradient(135deg, var(--accent), var(--accent-light)); }
+
+/* Menu Grid */
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
+  margin: 20px 0;
+}
+
+.menu-item {
+  background: var(--white);
+  padding: 20px 12px;
+  border-radius: var(--radius-lg);
+  text-align: center;
+  box-shadow: var(--shadow-md);
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  border: 1px solid var(--light-gray);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.menu-item:hover {
+  transform: scale(1.05);
+  background: var(--light);
+  box-shadow: var(--shadow-lg);
+}
+
+.menu-item img {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+}
+
+.menu-item p {
+  font-weight: 600;
+  color: var(--primary);
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+/* ========================================================= */
+/* 6. FORMS */
+/* ========================================================= */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: var(--dark);
+  font-size: 0.95rem;
+}
+
+.form-control {
+  width: 100%;
+  padding: 14px 16px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 1rem;
+  border: 2px solid var(--light-gray);
+  border-radius: var(--radius-md);
+  background: var(--white);
+  transition: all var(--transition-fast);
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+.form-control:hover {
+  border-color: var(--primary-light);
+}
+
+/* ========================================================= */
+/* 7. NOTIFICATION SYSTEM */
+/* ========================================================= */
+.notification-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 350px;
+  max-width: 90vw;
+}
+
+.notification {
+  background: var(--white);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  padding: 16px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  border-left: 4px solid var(--primary);
+  transform: translateX(100%);
+  opacity: 0;
+  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.notification.show {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.notification-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.notification-success { border-left-color: var(--secondary); }
+.notification-success .notification-icon { background: rgba(16, 185, 129, 0.1); color: var(--secondary); }
+
+.notification-error { border-left-color: var(--danger); }
+.notification-error .notification-icon { background: rgba(239, 68, 68, 0.1); color: var(--danger); }
+
+.notification-warning { border-left-color: var(--warning); }
+.notification-warning .notification-icon { background: rgba(245, 158, 11, 0.1); color: var(--warning); }
+
+.notification-info { border-left-color: var(--info); }
+.notification-info .notification-icon { background: rgba(14, 165, 233, 0.1); color: var(--info); }
+
+.notification-content { flex: 1; }
+.notification-title { font-weight: 600; margin-bottom: 4px; }
+.notification-message { font-size: 0.9rem; color: var(--dark-gray); }
+
+.notification-close {
+  background: none;
+  border: none;
+  color: var(--gray);
+  cursor: pointer;
+  font-size: 1.2rem;
+  padding: 0;
+  line-height: 1;
+}
+
+/* ========================================================= */
+/* 8. LOADING & SKELETON */
+/* ========================================================= */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  gap: 20px;
+}
+
+.loading-spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid rgba(79, 70, 229, 0.1);
+  border-radius: 50%;
+  border-top-color: var(--primary);
+  animation: spin 1s linear infinite;
+}
+
+.loading-text {
+  color: var(--dark-gray);
+  font-weight: 500;
+}
+
+.skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: var(--radius-md);
+}
+
+.skeleton-text {
+  height: 16px;
+  margin-bottom: 8px;
+}
+
+.skeleton-title {
+  height: 24px;
+  width: 70%;
+  margin-bottom: 16px;
+}
+
+.skeleton-card {
+  height: 200px;
+  border-radius: var(--radius-lg);
+}
+
+/* ========================================================= */
+/* 9. BADGES & STATUS */
+/* ========================================================= */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.badge-primary { background: rgba(79, 70, 229, 0.1); color: var(--primary); }
+.badge-secondary { background: rgba(16, 185, 129, 0.1); color: var(--secondary); }
+.badge-accent { background: rgba(249, 115, 22, 0.1); color: var(--accent); }
+.badge-danger { background: rgba(239, 68, 68, 0.1); color: var(--danger); }
+
+.status-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.status-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.status-active { background: var(--secondary); }
+.status-pending { background: var(--warning); }
+.status-inactive { background: var(--danger); }
+.status-completed { background: var(--info); }
+
+/* ========================================================= */
+/* 10. DOKTER CARD & LIST */
+/* ========================================================= */
+.dokter-list {
+  position: relative;
+  z-index: 10;
+}
+
+.dokter-card {
+  display: flex;
+  gap: 20px;
+  background: var(--white);
+  padding: 20px;
+  border-radius: var(--radius-lg);
+  margin-bottom: 20px;
+  box-shadow: var(--shadow-md);
+  align-items: center;
+  transition: all var(--transition-normal);
+  cursor: pointer;
+  border-left: 5px solid var(--secondary);
+}
+
+.dokter-card:hover {
+  transform: translateX(10px);
+  box-shadow: var(--shadow-lg);
+}
+
+.dokter-card img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+  border: 3px solid var(--light);
+}
+
+.dokter-info h4 { margin: 0 0 8px 0; font-size: 1.25rem; color: var(--primary);}
+.dokter-info p { margin: 6px 0; color: var(--dark-gray); font-size: 0.95rem; }
+.dokter-info b { color: var(--secondary-dark); }
+
+/* ========================================================= */
+/* 11. RESULT BOX */
+/* ========================================================= */
+.result-box {
+  background: rgba(14, 165, 233, 0.05);
+  padding: 20px;
+  border-radius: var(--radius-md);
+  margin-top: 20px;
+  border-left: 5px solid var(--info);
+  color: var(--dark);
+  font-size: 1rem;
+}
+
+.loading-bar {
+  height: 8px;
+  background: var(--light-gray);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  margin-top: 15px;
+}
+
+.loading-bar-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--primary), var(--primary-light));
+  animation: loadingAnim 2s infinite linear;
+}
+
+@keyframes loadingAnim {
+  0% { width: 0%; }
+  50% { width: 100%; }
+  100% { width: 0%; }
+}
+
+/* ========================================================= */
+/* 12. TAGIHAN & ANTRIAN */
+/* ========================================================= */
+.stok-row, .antrian-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--light-gray);
+}
+
+.stok-row:last-child, .antrian-row:last-child { border-bottom: none; }
+
+.antrian-row {
+  background: var(--light);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  margin-bottom: 12px;
+  border-left: 5px solid var(--secondary);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.antrian-row:hover { background: rgba(14, 165, 233, 0.1); }
+
+.antrian-number { 
+  font-size: 1.5rem; 
+  font-weight: bold; 
+  color: var(--primary);
+  min-width: 60px;
+}
+
+.antrian-info span { 
+  display: block; 
+  font-size: 0.9rem; 
+  color: var(--dark-gray); 
+  margin-top: 4px;
+}
+
+.antrian-info b { color: var(--secondary); }
+
+.stok-controls button {
+  background: var(--secondary);
+  color: var(--white);
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: 0.2s;
+  font-weight: bold;
+  margin: 0 4px;
+}
+
+.stok-controls button:hover { background: var(--secondary-dark); }
+
+.stok-qty {
+  font-weight: bold;
+  color: var(--primary);
+  width: 40px;
+  text-align: center;
+}
+
+.laporan-card {
+  background: var(--white);
+  padding: 20px;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 16px;
+  border-left: 5px solid var(--accent);
+}
+
+.laporan-card h4 { color: var(--accent); margin-top: 0; margin-bottom: 12px; }
+.laporan-card p { margin: 8px 0; font-size: 0.95rem; }
+
+/* ========================================================= */
+/* 13. MAIN LAYOUT */
+/* ========================================================= */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.main-header {
+  background: var(--white);
+  box-shadow: var(--shadow-sm);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  padding: 16px 0;
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+
+.logo-icon {
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+  font-size: 1.5rem;
+  animation: heartbeat 3s infinite;
+}
+
+.logo-text {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--dark);
+}
+
+.logo-text span { color: var(--primary); }
+
+.main-nav ul {
+  display: flex;
+  gap: 24px;
+  list-style: none;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: var(--dark-gray);
+  font-weight: 500;
+  padding: 8px 0;
+  position: relative;
+  transition: color var(--transition-fast);
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  transition: width var(--transition-normal);
+}
+
+.nav-link:hover {
+  color: var(--primary);
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.nav-link.active {
+  color: var(--primary);
+}
+
+.nav-link.active::after {
+  width: 100%;
+}
+
+/* ========================================================= */
+/* 14. FOOTER */
+/* ========================================================= */
+.main-footer {
+  background: var(--dark);
+  color: var(--white);
+  padding: 60px 0 30px;
+  margin-top: 60px;
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.footer-logo .logo-icon {
+  width: 40px;
+  height: 40px;
+  font-size: 1.25rem;
+}
+
+.footer-logo .logo-text {
+  color: var(--white);
+  font-size: 1.25rem;
+}
+
+.footer-about {
+  color: var(--light-gray);
+  margin-bottom: 20px;
+}
+
+.footer-links h4, .footer-contact h4 {
+  font-size: 1.125rem;
+  margin-bottom: 20px;
+  color: var(--white);
+}
+
+.footer-links ul {
+  list-style: none;
+}
+
+.footer-links li {
+  margin-bottom: 10px;
+}
+
+.footer-links a {
+  color: var(--light-gray);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.footer-links a:hover {
+  color: var(--primary-light);
+}
+
+.footer-contact p {
+  color: var(--light-gray);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 30px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  color: var(--light-gray);
+  font-size: 0.9rem;
+}
+
+/* ========================================================= */
+/* 15. RESPONSIVE */
+/* ========================================================= */
+@media (max-width: 768px) {
+  .main-nav {
+    display: none;
+  }
+  
+  .dokter-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  
+  .dokter-card img {
+    width: 100%;
+    height: 200px;
+  }
+  
+  .menu-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .notification-container {
+    width: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .menu-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .dokter-card {
+    padding: 16px;
+  }
+  
+  .card {
+    padding: 20px;
+  }
+}
+</style>
+</head>
+
+<body>
+<!-- Background Animation -->
+<div class="bg-animation">
+  <div class="bg-circle"></div>
+  <div class="bg-circle"></div>
+  <div class="bg-circle"></div>
+</div>
+
+<!-- Notification Container -->
+<div class="notification-container" id="notificationContainer"></div>
+
+<!-- Audio Elements -->
+<audio id="clickSound" src="https://assets.mixkit.co/sfx/preview/mixkit-select-click-1109.mp3" preload="auto"></audio>
+<audio id="successSound" src="https://assets.mixkit.co/sfx/preview/mixkit-correct-answer-tone-2870.mp3" preload="auto"></audio>
+<audio id="notificationSound" src="https://assets.mixkit.co/sfx/preview/mixkit-software-interface-start-2574.mp3" preload="auto"></audio>
+
+<!-- Main Header -->
+<header class="main-header">
+  <div class="container">
+    <div class="header-content">
+      <a href="#" class="logo" onclick="showScreen('menu-awal')">
+        <div class="logo-icon animate-heartbeat">
+          <i class="fas fa-heartbeat"></i>
+        </div>
+        <div class="logo-text">Klinik<span>Paramita</span></div>
+      </a>
+      
+      <nav class="main-nav">
+        <ul>
+          <li><a href="#" class="nav-link" onclick="showScreen('menu-awal')">Beranda</a></li>
+          <li><a href="#" class="nav-link" onclick="loginAsPasien()">Pasien</a></li>
+          <li><a href="#" class="nav-link" onclick="showScreen('login-admin')">Admin</a></li>
+          <li><a href="#" class="nav-link" onclick="showNotification('Fitur', 'Hubungi kami: (021) 1234-5678', 'info')">Kontak</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<!-- Main Content Container -->
+<main class="container" style="min-height: 80vh; padding: 40px 0;">
+  
+  <!-- ===================== SCREEN 1: MENU AWAL ===================== -->
+  <div id="menu-awal" class="card" style="max-width: 500px; margin: 0 auto;">
+    <div class="card-icon card-icon-primary" style="margin: 0 auto 20px;">
+      <i class="fas fa-hospital"></i>
+    </div>
+    <h2 class="card-title text-center">Selamat Datang di Klinik Paramita</h2>
+    <p class="text-center" style="color: var(--dark-gray); margin-bottom: 30px;">Silakan pilih masuk sebagai:</p>
+    
+    <button class="btn btn-primary btn-lg btn-full" onclick="showScreen('login-pasien')">
+      <i class="fas fa-user-injured"></i> Masuk Sebagai Pasien
+    </button>
+    
+    <button class="btn btn-secondary btn-lg btn-full" style="margin-top: 16px;" onclick="showScreen('login-admin')">
+      <i class="fas fa-user-shield"></i> Masuk Sebagai Admin
+    </button>
+    
+    <div class="result-box" style="margin-top: 30px;">
+      <p style="margin: 0; text-align: center;">
+        <i class="fas fa-info-circle"></i> Layanan 24/7 untuk konsultasi darurat
+      </p>
+    </div>
+  </div>
+
+  <!-- ===================== SCREEN 2: LOGIN PASIEN ===================== -->
+  <div id="login-pasien" class="card" style="max-width: 500px; margin: 0 auto; display: none;">
+    <h2 class="card-title">Registrasi Pasien</h2>
+    <p style="color: var(--dark-gray); margin-bottom: 20px;">Isi data diri Anda untuk mendaftar sebagai pasien</p>
+    
+    <div class="form-group">
+      <label class="form-label">Nama Lengkap</label>
+      <input id="pNama" type="text" class="form-control" placeholder="Nama lengkap Anda">
+    </div>
+    
+    <div class="form-group">
+      <label class="form-label">NIM (Nomor Induk Mahasiswa)</label>
+      <input id="pNIM" type="text" class="form-control" placeholder="3 digit NIM">
+    </div>
+    
+    <div class="form-group">
+      <label class="form-label">Alamat Domisili</label>
+      <input id="pAlamat" type="text" class="form-control" placeholder="Alamat lengkap">
+    </div>
+    
+    <button class="btn btn-primary btn-full" onclick="submitPasien()">
+      <i class="fas fa-user-plus"></i> Daftar & Masuk
+    </button>
+    
+    <button class="btn btn-outline btn-full" style="margin-top: 12px;" onclick="showScreen('menu-awal')">
+      <i class="fas fa-arrow-left"></i> Kembali
+    </button>
+  </div>
+
+  <!-- ===================== SCREEN 3: LOGIN ADMIN ===================== -->
+  <div id="login-admin" class="card" style="max-width: 500px; margin: 0 auto; display: none;">
+    <h2 class="card-title">Login Admin</h2>
+    <p style="color: var(--dark-gray); margin-bottom: 20px;">Masuk ke sistem admin dengan akun yang valid</p>
+    
+    <div class="form-group">
+      <label class="form-label">Username</label>
+      <input id="aUser" type="text" class="form-control" placeholder="Masukkan username">
+    </div>
+    
+    <div class="form-group">
+      <label class="form-label">Password</label>
+      <input id="aPass" type="password" class="form-control" placeholder="Masukkan password">
+    </div>
+    
+    <button class="btn btn-primary btn-full" onclick="submitAdmin()">
+      <i class="fas fa-sign-in-alt"></i> Masuk
+    </button>
+    
+    <button class="btn btn-outline btn-full" style="margin-top: 12px;" onclick="showScreen('menu-awal')">
+      <i class="fas fa-arrow-left"></i> Kembali
+    </button>
+  </div>
+
+  <!-- ===================== SCREEN 4: MENU PASIEN ===================== -->
+  <div id="menu-pasien" class="card" style="display: none;">
+    <div class="card-header">
+      <div>
+        <h2 class="card-title">Menu Pasien</h2>
+        <p style="color: var(--dark-gray); margin: 0;">Selamat datang, <span id="pasien-nama" style="font-weight: 600; color: var(--primary);">Pasien</span></p>
+      </div>
+      <div class="status-indicator">
+        <div class="status-dot status-active"></div>
+        <span style="color: var(--secondary); font-weight: 500;">Online</span>
+      </div>
+    </div>
+    
+    <div class="menu-grid">
+      <div class="menu-item" onclick="showScreen('dokter-page')">
+        <img src="https://img.icons8.com/color/96/planner.png" alt="">
+        <p>Membuat Janji Temu</p>
+      </div>
+      <div class="menu-item" onclick="showHasilPemeriksaan()">
+        <img src="https://img.icons8.com/color/96/health-checkup.png" alt="">
+        <p>Melihat Hasil Pemeriksaan</p>
+      </div>
+      <div class="menu-item" onclick="showScreen('halaman-bayar')">
+        <img src="https://img.icons8.com/color/96/money.png" alt="">
+        <p>Melakukan Pembayaran</p>
+      </div>
+      <div class="menu-item" onclick="showScreen('halaman-resep')">
+        <img src="https://img.icons8.com/color/96/pill.png" alt="">
+        <p>Menerima Resep & Obat</p>
+      </div>
+    </div>
+    
+    <button class="btn btn-outline btn-full" onclick="showScreen('menu-awal')">
+      <i class="fas fa-sign-out-alt"></i> Keluar
+    </button>
+  </div>
+
+  <!-- ===================== SCREEN 5: DOKTER PAGE ===================== -->
+  <div id="dokter-page" style="display: none;">
+    <div class="card" style="margin-bottom: 30px;">
+      <h2 class="card-title">Jadwal Dokter Spesialis</h2>
+      <p style="color: var(--dark-gray);">Pilih dokter untuk membuat janji temu</p>
+    </div>
+    
+    <div id="dokter-list-container">
+      <!-- Dokter list akan dimuat di sini -->
+    </div>
+    
+    <div class="card" style="text-align: center; margin-top: 30px;">
+      <button class="btn btn-outline" onclick="showScreen('menu-pasien')">
+        <i class="fas fa-arrow-left"></i> Kembali ke Menu Pasien
+      </button>
+    </div>
+  </div>
+
+  <!-- ===================== SCREEN 6: KONFIRMASI JANJI ===================== -->
+  <div id="konfirmasi-janji" class="card" style="max-width: 600px; margin: 0 auto; display: none;">
+    <h2 class="card-title">Konfirmasi Janji Temu</h2>
+    
+    <div id="infoDokter" class="result-box" style="margin-bottom: 20px;"></div>
+    
+    <div class="form-group">
+      <label class="form-label">Nama Pasien</label>
+      <input id="namaPasienJanji" class="form-control" placeholder="Masukkan nama">
+    </div>
+    
+    <div class="form-group">
+      <label class="form-label">Pilih Tanggal</label>
+      <input id="tanggalJanji" type="date" class="form-control" required>
+    </div>
+    
+    <div class="form-group">
+      <label class="form-label">Pilih Slot Waktu</label>
+      <select id="slotWaktuJanji" class="form-control" required></select>
+    </div>
+    
+    <div class="form-group">
+      <label class="form-label">Catatan (opsional)</label>
+      <input id="catatanJanji" class="form-control" placeholder="Keluhan singkat / catatan">
+    </div>
+    
+    <button class="btn btn-primary btn-full" onclick="konfirmasiSimpan()">
+      <i class="fas fa-calendar-check"></i> Konfirmasi Janji
+    </button>
+    
+    <button class="btn btn-outline btn-full" style="margin-top: 12px;" onclick="showScreen('dokter-page')">
+      <i class="fas fa-arrow-left"></i> Pilih Ulang Dokter
+    </button>
+    
+    <div id="hasilKonfirmasi" style="margin-top: 20px;"></div>
+  </div>
+
+  <!-- ===================== SCREEN 7: HALAMAN ANTRIAN ===================== -->
+  <div id="halaman-antrian" class="card" style="max-width: 500px; margin: 0 auto; display: none;">
+    <h2 class="card-title">Nomor Antrian Anda</h2>
+    
+    <div class="result-box" style="text-align: center; padding: 30px;">
+      <div style="font-size: 3rem; color: var(--primary); font-weight: bold; margin: 20px 0;" id="nomorAntrianBox">-</div>
+      <p>Simpan nomor antrian ini untuk keperluan administrasi</p>
+    </div>
+    
+    <div id="detailAntrian" class="result-box" style="display: none; margin-top: 20px;"></div>
+    
+    <button class="btn btn-secondary btn-full" onclick="showScreen('menu-pasien')">
+      <i class="fas fa-check"></i> Selesai
+    </button>
+  </div>
+
+  <!-- ===================== SCREEN 8: HASIL PEMERIKSAAN ===================== -->
+  <div id="halaman-hasil" class="card" style="max-width: 500px; margin: 0 auto; display: none;">
+    <h2 class="card-title">Hasil Pemeriksaan</h2>
+    
+    <div id="hasil-content">
+      <!-- Konten akan dimuat secara dinamis berdasarkan status pemeriksaan -->
+    </div>
+    
+    <button class="btn btn-outline btn-full" style="margin-top: 20px;" onclick="showScreen('menu-pasien')">
+      <i class="fas fa-arrow-left"></i> Kembali
+    </button>
+  </div>
+
+  <!-- ===================== SCREEN 9: PEMBAYARAN ===================== -->
+  <div id="halaman-bayar" class="card" style="max-width: 500px; margin: 0 auto; display: none;">
+    <h2 class="card-title">Pembayaran Tagihan</h2>
+    
+    <div id="tagihan-list">
+      <div class="result-box" id="no-tagihan-msg">
+        <p style="margin: 0; text-align: center;">Belum ada tagihan yang perlu dibayar.</p>
+      </div>
+    </div>
+    
+    <div id="form-bayar" style="display: none; margin-top: 20px;">
+      <div class="result-box">
+        <h4 style="margin-top: 0;">Tagihan yang Dipilih</h4>
+        <div id="detail-tagihan-selected"></div>
+        <div style="font-size: 1.5rem; font-weight: bold; color: var(--primary); text-align: center; margin: 15px 0;" id="jumlah-tagihan-selected">Rp 0</div>
+      </div>
+      
+      <button class="btn btn-primary btn-full" onclick="bayarTagihan()">
+        <i class="fas fa-credit-card"></i> Bayar Sekarang
+      </button>
+      
+      <button class="btn btn-outline btn-full" style="margin-top: 12px;" onclick="batalBayar()">
+        <i class="fas fa-times"></i> Batalkan
+      </button>
+    </div>
+    
+    <button class="btn btn-outline btn-full" style="margin-top: 20px;" onclick="showScreen('menu-pasien')">
+      <i class="fas fa-arrow-left"></i> Kembali
+    </button>
+    
+    <div id="hasilBayarBox" style="margin-top: 20px;"></div>
+  </div>
+
+  <!-- ===================== SCREEN 10: KWITANSI ===================== -->
+  <div id="halaman-kwitansi" class="card" style="max-width: 500px; margin: 0 auto; display: none;">
+    <h2 class="card-title">Kwitansi Pembayaran</h2>
+    
+    <div style="text-align: center; margin: 20px 0;">
+      <img src="https://img.icons8.com/color/300/invoice.png" alt="kwitansi" style="width: 100%; max-width: 300px; border-radius: var(--radius-md);">
+    </div>
+    
+    <div class="result-box">
+      <p style="text-align: center; margin: 0;">
+        <i class="fas fa-check-circle" style="color: var(--secondary);"></i> 
+        Pembayaran berhasil. Kwitansi di atas bisa disimpan sebagai bukti.
+      </p>
+    </div>
+    
+    <button class="btn btn-secondary btn-full" style="margin-top: 20px;" onclick="showScreen('menu-pasien')">
+      <i class="fas fa-home"></i> Selesai
+    </button>
+  </div>
+
+  <!-- ===================== SCREEN 11: RESEP & APOTEK ===================== -->
+  <div id="halaman-resep" class="card" style="max-width: 600px; margin: 0 auto; display: none;">
+    <h2 class="card-title">Resep & Apotek</h2>
+    
+    <p style="color: var(--dark-gray); margin-bottom: 20px;">Pilih obat yang diresepkan atau sedang Anda konsumsi.</p>
+    
+    <div class="form-group">
+      <label class="form-label">Pilih Obat (Contoh Resep)</label>
+      <select id="pilihanObat" class="form-control" onchange="tampilkanObat()">
+        <option value="">-- pilih obat --</option>
+        <option value="Paracetamol 500mg">Paracetamol 500mg (Pereda Nyeri/Demam)</option>
+        <option value="Amoxicillin 250mg">Amoxicillin 250mg (Antibiotik)</option>
+        <option value="Lansoprazole 30mg">Lansoprazole 30mg (Obat Mag)</option>
+        <option value="Vitamin C 1000mg">Vitamin C 1000mg (Suplemen)</option>
+      </select>
+    </div>
+    
+    <div id="loadingObat" class="loading-bar" style="display: none; margin-top: 20px;">
+      <div class="loading-bar-fill"></div>
+    </div>
+    
+    <div class="result-box" id="hasilResep" style="display: none; margin-top: 20px;"></div>
+    
+    <div class="result-box" id="interaksiWarning" style="display: none; margin-top: 20px; border-left-color: var(--danger); background: rgba(239, 68, 68, 0.05);"></div>
+    
+    <div style="display: flex; gap: 12px; margin-top: 30px;">
+      <button class="btn btn-primary" style="flex: 1;" onclick="ambilResep()">
+        <i class="fas fa-print"></i> Ambil Resep
+      </button>
+      <button class="btn btn-secondary" style="flex: 1;" onclick="showScreen('halaman-cek-obat')">
+        <i class="fas fa-pills"></i> Cek Stok
+      </button>
+    </div>
+    
+    <button class="btn btn-outline btn-full" style="margin-top: 20px;" onclick="showScreen('menu-pasien')">
+      <i class="fas fa-arrow-left"></i> Kembali
+    </button>
+  </div>
+
+  <!-- ===================== SCREEN 12: CEK OBAT ===================== -->
+  <div id="halaman-cek-obat" class="card" style="max-width: 500px; margin: 0 auto; display: none;">
+    <h2 class="card-title">Stok & Rekomendasi Obat</h2>
+    
+    <div class="result-box" id="stok-info-box" style="border-left-color: var(--secondary);">
+      <h4 style="margin-top: 0;">Informasi Stok Obat</h4>
+      <!-- Stok info akan dimuat di sini -->
+    </div>
+    
+    <div class="result-box" style="margin-top: 20px; border-left-color: var(--accent); background: rgba(249, 115, 22, 0.05);">
+      <h4 style="margin-top: 0; color: var(--accent);">
+        <i class="fas fa-lightbulb"></i> Rekomendasi untuk Anda
+      </h4>
+      <p>Jika Anda memilih <strong>Paracetamol</strong>, kami juga merekomendasikan <strong>Vitamin B Kompleks</strong> untuk pemulihan energi.</p>
+      <p>Jika Anda memilih <strong>Amoxicillin</strong>, pastikan Anda <strong>menghabiskannya</strong> untuk menghindari resistensi antibiotik.</p>
+    </div>
+    
+    <button class="btn btn-outline btn-full" style="margin-top: 20px;" onclick="showScreen('halaman-resep')">
+      <i class="fas fa-arrow-left"></i> Kembali
+    </button>
+  </div>
+
+  <!-- ===================== SCREEN 13: AMBIL RESEP ===================== -->
+  <div id="halaman-ambil-resep" class="card" style="max-width: 500px; margin: 0 auto; display: none;">
+    <h2 class="card-title">Ambil Resep di Apotek</h2>
+    
+    <div class="result-box">
+      <p>Obat: <span id="namaObatDiambil" style="font-weight: bold; color: var(--primary);">-</span></p>
+      <div id="tampilNomorAntrian" style="margin-top: 15px; padding: 15px; background: rgba(16, 185, 129, 0.1); border-radius: var(--radius-md); text-align: center;">
+        <!-- Nomor antrian akan dimuat di sini -->
+      </div>
+      <p style="margin-top: 15px; text-align: center;">
+        Obat pilihan Anda <strong>sudah siap</strong> untuk diserahkan.<br>
+        Silakan tunjukkan nomor antrian di Apotek.
+      </p>
+    </div>
+    
+    <button class="btn btn-secondary btn-full" style="margin-top: 20px;" onclick="showScreen('menu-pasien')">
+      <i class="fas fa-home"></i> Selesai
+    </button>
+  </div>
+
+  <!-- ===================== SCREEN 14: MENU ADMIN ===================== -->
+  <div id="menu-admin" class="card" style="display: none;">
+    <div class="card-header">
+      <div>
+        <h2 class="card-title">Menu Admin</h2>
+        <p style="color: var(--dark-gray); margin: 0;">Selamat datang, <span style="font-weight: 600; color: var(--primary);">Administrator</span></p>
+      </div>
+      <div class="badge badge-primary">Admin Mode</div>
+    </div>
+    
+    <div class="result-box" style="margin-bottom: 20px; border-left-color: var(--secondary);">
+      <h4 style="margin-top: 0;">Dashboard Hari Ini</h4>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 10px;">
+        <div>
+          <p style="margin: 0; color: var(--dark-gray); font-size: 0.9rem;">Janji Temu</p>
+          <p style="margin: 5px 0 0 0; font-size: 1.2rem; font-weight: bold; color: var(--primary);" id="stat-antrian">0 Antrian</p>
+        </div>
+        <div>
+          <p style="margin: 0; color: var(--dark-gray); font-size: 0.9rem;">Resep</p>
+          <p style="margin: 5px 0 0 0; font-size: 1.2rem; font-weight: bold; color: var(--secondary);" id="stat-resep">-</p>
+        </div>
+        <div>
+          <p style="margin: 0; color: var(--dark-gray); font-size: 0.9rem;">Transaksi</p>
+          <p style="margin: 5px 0 0 0; font-size: 1.2rem; font-weight: bold; color: var(--accent);" id="stat-bayar">Rp 0</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="menu-grid">
+      <div class="menu-item" onclick="showScreen('menu-dokter')">
+        <img src="https://img.icons8.com/color/96/stethoscope.png" alt="">
+        <p>Menu Dokter 👨‍⚕️</p>
+      </div>
+      <div class="menu-item" onclick="showScreen('menu-apotik')">
+        <img src="https://img.icons8.com/color/96/pill.png" alt="">
+        <p>Petugas Apotik 💊</p>
+      </div>
+      <div class="menu-item" onclick="showScreen('menu-administrasi')">
+        <img src="https://img.icons8.com/color/96/report-card.png" alt="">
+        <p>Administrasi 📝</p>
+      </div>
+      <div class="menu-item" onclick="showScreen('menu-kepala')">
+        <img src="https://img.icons8.com/color/96/manager.png" alt="">
+        <p>Kepala Klinik 👑</p>
+      </div>
+    </div>
+    
+    <button class="btn btn-outline btn-full" onclick="showScreen('menu-awal')">
+      <i class="fas fa-sign-out-alt"></i> Logout
+    </button>
+  </div>
+
+  <!-- ===================== SCREEN 15: MENU DOKTER (ADMIN) ===================== -->
+  <div id="menu-dokter" class="card" style="display: none;">
+    <h2 class="card-title">Menu Dokter</h2>
+    
+    <div class="menu-grid">
+      <div class="menu-item" onclick="showScreen('dokter-data-pasien')">
+        <img src="https://img.icons8.com/color/96/hospital-bed.png" alt="">
+        <p>Data Antrian Pasien</p>
+      </div>
+      <div class="menu-item" onclick="showScreen('dokter-rekam-medis')">
+        <img src="https://gradual-amethyst-ubqyyt5ujg-vwjwhav73g.edgeone.dev/images%20(8).jpeg " alt="">
+        <p>Pemeriksaan & Resep</p>
+      </div>
+    </div>
+    
+    <button class="btn btn-outline btn-full" style="margin-top: 20px;" onclick="showScreen('menu-admin')">
+      <i class="fas fa-arrow-left"></i> Kembali ke Menu Admin
+    </button>
+  </div>
+
+  <!-- ===================== SCREEN 16: DATA PASIEN (DOKTER) ===================== -->
+  <div id="dokter-data-pasien" class="card" style="display: none;">
+    <h2 class="card-title">Antrian Janji Temu</h2>
+    <p style="color: var(--dark-gray); margin-bottom: 20px;">Klik antrian untuk memulai pemeriksaan.</p>
+    
+    <div id="antrian-list">
+      <div class="result-box" id="no-antrian-msg">
+        <p style="margin: 0; text-align: center;">Belum ada antrian hari ini.</p>
+      </div>
+    </div>
+    
+    <button class="btn btn-outline btn-full" style="margin-top: 20px;" onclick="showScreen('menu-dokter')">
+      <i class="fas fa-arrow-left"></i> Kembali
+    </button>
+  </div>
+
+  <!-- ===================== SCREEN 17: REKAM MEDIS (DOKTER) ===================== -->
+  <div id="dokter-rekam-medis" class="card" style="max-width: 600px; margin: 0 auto; display: none;">
+    <h2 class="card-title">Rekam Medis & Resep</h2>
+    
+    <div class="result-box" style="border-left-color: var(--accent); margin-bottom: 20px;">
+      <p>Pasien yang dilayani: <b id="rekam-pasien-nama">-</b></p>
+    </div>
+    
+    <div class="form-group">
+      <label class="form-label">Hasil Pemeriksaan & Diagnosis</label>
+      <textarea id="diagnosis" class="form-control" rows="3" placeholder="Contoh: Infeksi virus ringan, batuk pilek."></textarea>
+    </div>
+    
+    <div class="form-group">
+      <label class="form-label">Resep Obat (Pisahkan dengan koma)</label>
+      <input id="resep-obat" type="text" class="form-control" placeholder="Contoh: Paracetamol 500mg (2x1), Vitamin C 1000mg (1x1)">
+    </div>
+    
+    <div class="form-group">
+      <label class="form-label">Tindakan / Catatan Dokter</label>
+      <textarea id="tindakan" class="form-control" rows="2" placeholder="Contoh: Istirahat total, kontrol 3 hari lagi."></textarea>
+    </div>
+    
+    <div style="display: flex; gap: 12px; margin-top: 30px;">
+      <button class="btn btn-primary" style="flex: 1;" onclick="simpanRekamMedis()">
+        <i class="fas fa-save"></i> Simpan Rekam Medis & Resep
+      </button>
+      <button class="btn btn-danger" style="flex: 1;" onclick="showScreen('menu-dokter')">
+        <i class="fas fa-times"></i> Batalkan
+      </button>
+    </div>
+  </div>
+
+  <!-- ===================== SCREEN 18: MENU APOTIK ===================== -->
+  <div id="menu-apotik" class="card" style="display: none;">
+    <h2 class="card-title">Menu Petugas Apotik</h2>
+    
+    <div class="menu-grid">
+      <div class="menu-item" onclick="showScreen('apotik-stok')">
+        <img src="https://img.icons8.com/color/96/pills.png" alt="">
+        <p>Kelola Stok Obat</p>
+      </div>
+      <div class="menu-item" onclick="showScreen('apotik-resep-masuk')">
+        <img src="https://img.icons8.com/color/96/receive-cash.png" alt="">
+        <p>Terima & Serahkan Resep</p>
+      </div>
+      <div class="menu-item" onclick="showScreen('apotik-laporan')">
+        <img src="https://img.icons8.com/color/96/file.png" alt="">
+        <p>Laporan Apotek</p>
+      </div>
+    </div>
+    
+    <button class="btn btn-outline btn-full" style="margin-top: 20px;" onclick="showScreen('menu-admin')">
+      <i class="fas fa-arrow-left"></i> Kembali
+    </button>
+  </div>
+
+  <!-- ===================== SCREEN 19: STOK OBAT (APOTIK) ===================== -->
+  <div id="apotik-stok" class="card" style="display: none;">
+    <h2 class="card-title">Pengelolaan Stok Obat</h2>
+    <p style="color: var(--dark-gray); margin-bottom: 20px;">Kelola kuantitas stok obat yang tersedia.</p>
+    
+    <div id="stok-obat-list">
+      <!-- Stok obat akan dimuat di sini -->
+    </div>
+    
+    <button class="btn btn-outline btn-full" style="margin-top: 20px;" onclick="showScreen('menu-apotik')">
+      <i class="fas fa-arrow-left"></i> Kembali
+    </button>
+  </div>
+
+  <!-- ===================== SCREEN 20: RESEP MASUK (APOTIK) ===================== -->
+  <div id="apotik-resep-masuk" class="card" style="display: none;">
+    <h2 class="card-title">Penyerahan Obat</h2>
+    <p style="color: var(--dark-gray); margin-bottom: 20px;">Antrian Resep yang Masuk dari Dokter.</p>
+    
+    <div id="resep-antrian-list">
+      <div class="result-box" id="no-resep-msg">
+        <p style="margin: 0; text-align: center;">Belum ada resep yang perlu disiapkan.</p>
+      </div>
+    </div>
+    
+    <button class="btn btn-outline btn-full" style="margin-top: 20px;" onclick="showScreen('menu-apotik')">
+      <i class="fas fa-arrow-left"></i> Kembali
+    </button>
+  </div>
+
+  <!-- ===================== SCREEN 21: LAPORAN APOTEK ===================== -->
+  <div id="apotik-laporan" class="card" style="display: none;">
+    <h2 class="card-title">Laporan Akhir Apotek</h2>
+    
+    <div class="laporan-card">
+      <h4>Ringkasan Stok Obat Kritis</h4>
+      <p>Obat dengan stok di bawah 50 unit:</p>
+      <ul id="laporan-stok-kritis" style="padding-left: 20px; margin-top: 10px;">
+        <!-- Daftar stok kritis akan dimuat di sini -->
+      </ul>
+    </div>
+    
+    <div class="laporan-card">
+      <h4>Statistik Resep Hari Ini</h4>
+      <p>Total Resep Diterima: <b id="stat-resep-terima">0</b></p>
+      <p>Obat Paling Laris: <b id="stat-obat-laris">-</b></p>
+    </div>
+    
+    <button class="btn btn-outline btn-full" style="margin-top: 20px;" onclick="showScreen('menu-apotik')">
+      <i class="fas fa-arrow-left"></i> Kembali
+    </button>
+  </div>
+
+  <!-- ===================== SCREEN 22: MENU ADMINISTRASI ===================== -->
+  <div id="menu-administrasi" class="card" style="display: none;">
+    <h2 class="card-title">Menu Administrasi</h2>
+    
+    <div class="menu-grid">
+      <div class="menu-item" onclick="showScreen('adminis-catat-bayar')">
+        <img src="https://img.icons8.com/color/96/money-bag.png" alt="">
+        <p>Catat Pembayaran Pasien</p>
+      </div>
+      <div class="menu-item" onclick="showScreen('adminis-laporan-transaksi')">
+        <img src="https://img.icons8.com/color/96/bar-chart.png" alt="">
+        <p>Laporan Transaksi Harian</p>
+      </div>
+      <div class="menu-item" onclick="showScreen('adminis-buat-tagihan')">
+        <img src="https://img.icons8.com/color/96/invoice.png" alt="">
+        <p>Buat Tagihan Pasien</p>
+      </div>
+    </div>
+    
+    <button class="btn btn-outline btn-full" style="margin-top: 20px;" onclick="showScreen('menu-admin')">
+      <i class="fas fa-arrow-left"></i> Kembali ke Menu Admin
+    </button>
+  </div>
+
+  <!-- ===================== SCREEN 23: BUAT TAGIHAN ===================== -->
+  <div id="adminis-buat-tagihan" class="card" style="max-width: 500px; margin: 0 auto; display: none;">
+    <h2 class="card-title">Buat Tagihan Pasien</h2>
+    <p style="color: var(--dark-gray); margin-bottom: 20px;">Buat tagihan untuk pasien yang akan dibayar nanti.</p>
+    
+    <div class="form-group">
+      <label class="form-label">Pilih Pasien</label>
+      <select id="select-pasien-tagihan" class="form-control">
+        <option value="">-- Pilih Pasien --</option>
+      </select>
+    </div>
+    
+    <div class="form-group">
+      <label class="form-label">Jenis Tagihan</label>
+      <select id="jenis-tagihan" class="form-control">
+        <option value="Konsultasi Dokter">Konsultasi Dokter</option>
+        <option value="Pemeriksaan Lab">Pemeriksaan Lab</option>
+        <option value="Obat & Resep">Obat & Resep</option>
+        <option value="Tindakan Medis">Tindakan Medis</option>
+        <option value="Lain-lain">Lain-lain</option>
+      </select>
+    </div>
+    
+    <div class="form-group">
+      <label class="form-label">Jumlah Tagihan (Rp)</label>
+      <input id="jumlah-tagihan" type="number" class="form-control" placeholder="85000" min="1000">
+    </div>
+    
+    <div class="form-group">
+      <label class="form-label">Keterangan (Opsional)</label>
+      <textarea id="keterangan-tagihan" class="form-control" rows="2" placeholder="Contoh: Biaya konsultasi dokter umum + obat"></textarea>
+    </div>
+    
+    <button class="btn btn-primary btn-full" onclick="buatTagihanBaru()">
+      <i class="fas fa-file-invoice"></i> Buat Tagihan
+    </button>
+    
+    <div id="hasil-buat-tagihan" class="result-box" style="margin-top: 20px; display: none;"></div>
+    
+    <button class="btn btn-outline btn-full" style="margin-top: 20px;" onclick="showScreen('menu-administrasi')">
+      <i class="fas fa-arrow-left"></i> Kembali
+    </button>
+  </div>
+
+  <!-- ===================== SCREEN 24: CATAT PEMBAYARAN ===================== -->
+  <div id="adminis-catat-bayar" class="card" style="display: none;">
+    <h2 class="card-title">Catat Pembayaran Pasien</h2>
+    <p style="color: var(--dark-gray); margin-bottom: 20px;">Pilih tagihan yang sudah dibayar oleh pasien.</p>
+    
+    <div id="tagihan-belum-bayar">
+      <div class="result-box" id="no-tagihan-admin-msg">
+        <p style="margin: 0; text-align: center;">Belum ada tagihan yang perlu dicatat.</p>
+      </div>
+    </div>
+    
+    <div id="form-konfirmasi-bayar" style="display: none; margin-top: 20px;">
+      <div class="result-box">
+        <h4 style="margin-top: 0;">Konfirmasi Pembayaran</h4>
+        <div id="detail-tagihan-konfirmasi"></div>
+        <div style="font-size: 1.5rem; font-weight: bold; color: var(--primary); text-align: center; margin: 15px 0;" id="jumlah-tagihan-konfirmasi">Rp 0</div>
+      </div>
+      
+      <div style="display: flex; gap: 12px;">
+        <button class="btn btn-primary" style="flex: 1;" onclick="konfirmasiPembayaran()">
+          <i class="fas fa-check"></i> Konfirmasi
+        </button>
+        <button class="btn btn-outline" style="flex: 1;" onclick="batalKonfirmasi()">
+          <i class="fas fa-times"></i> Batalkan
+        </button>
+      </div>
+    </div>
+    
+    <div id="hasil-catat-bayar" class="result-box" style="margin-top: 20px; display: none;"></div>
+    
+    <button class="btn btn-outline btn-full" style="margin-top: 20px;" onclick="showScreen('menu-administrasi')">
+      <i class="fas fa-arrow-left"></i> Kembali
+    </button>
+  </div>
+
+  <!-- ===================== SCREEN 25: LAPORAN TRANSAKSI ===================== -->
+  <div id="adminis-laporan-transaksi" class="card" style="display: none;">
+    <h2 class="card-title">Laporan Transaksi Harian</h2>
+    
+    <div class="laporan-card">
+      <h4>Total Pemasukan Hari Ini</h4>
+      <p>Total Transaksi: <b id="lap-total-transaksi">Rp 0</b></p>
+      <p>Jumlah Pembayaran Tercatat: <b id="lap-jumlah-bayar">0</b></p>
+      <p>Tagihan Belum Dibayar: <b id="lap-tagihan-belum">0 Tagihan</b></p>
+    </div>
+    
+    <div class="laporan-card">
+      <h4>Detail Transaksi (Simulasi)</h4>
+      <ul id="lap-transaksi-list" style="padding-left: 20px; margin-top: 10px;">
+        <!-- Daftar transaksi akan dimuat di sini -->
+      </ul>
+    </div>
+    
+    <button class="btn btn-outline btn-full" style="margin-top: 20px;" onclick="showScreen('menu-administrasi')">
+      <i class="fas fa-arrow-left"></i> Kembali
+    </button>
+  </div>
+
+  <!-- ===================== SCREEN 26: MENU KEPALA KLINIK ===================== -->
+  <div id="menu-kepala" class="card" style="display: none;">
+    <h2 class="card-title">Menu Kepala Klinik</h2>
+    
+    <div class="menu-grid">
+      <div class="menu-item" onclick="showScreen('kepala-evaluasi')">
+        <img src="https://img.icons8.com/color/96/business-report.png" alt="">
+        <p>Evaluasi Kinerja</p>
+      </div>
+      <div class="menu-item" onclick="showScreen('kepala-rekam-medis')">
+        <img src="https://img.icons8.com/color/96/search-property.png" alt="">
+        <p>Review Rekam Medis</p>
+      </div>
+      <div class="menu-item" onclick="showScreen('kepala-laporan-akhir')">
+        <img src="https://gradual-amethyst-ubqyyt5ujg-vwjwhav73g.edgeone.dev/images%20(8).jpeg " alt="">
+        <p>Laporan Akhir Klinik</p>
+      </div>
+    </div>
+    
+    <button class="btn btn-outline btn-full" style="margin-top: 20px;" onclick="showScreen('menu-admin')">
+      <i class="fas fa-arrow-left"></i> Kembali
+    </button>
+  </div>
+
+  <!-- ===================== SCREEN 27: EVALUASI KINERJA ===================== -->
+  <div id="kepala-evaluasi" class="card" style="display: none;">
+    <h2 class="card-title">Evaluasi Kinerja Dokter</h2>
+    
+    <div class="laporan-card">
+      <h4>Metrik Kinerja (Simulasi)</h4>
+      <p>Dokter dengan pasien terbanyak: <strong>dr. Maya Lestari</strong> (4 Pasien)</p>
+      <p>Waktu Pemeriksaan Rata-rata: <strong>12 Menit</strong></p>
+      <p>Kepuasan Pasien (Survei): <strong>9.2/10</strong></p>
+    </div>
+    
+    <div class="laporan-card">
+      <h4>Rekomendasi</h4>
+      <p>Perlu penambahan jam praktik untuk spesialis <strong>Bedah</strong>.</p>
+      <p>Stok obat <strong>Amoxicillin</strong> perlu di-restock segera.</p>
+    </div>
+    
+    <button class="btn btn-outline btn-full" style="margin-top: 20px;" onclick="showScreen('menu-kepala')">
+      <i class="fas fa-arrow-left"></i> Kembali
+    </button>
+  </div>
+
+  <!-- ===================== SCREEN 28: REVIEW REKAM MEDIS ===================== -->
+  <div id="kepala-rekam-medis" class="card" style="max-width: 600px; margin: 0 auto; display: none;">
+    <h2 class="card-title">Review Rekam Medis</h2>
+    <p style="color: var(--dark-gray); margin-bottom: 20px;">Akses Penuh ke Rekam Medis (Simulasi).</p>
+    
+    <div class="form-group">
+      <label class="form-label">Pilih Pasien (Simulasi)</label>
+      <select id="review-pasien-select" class="form-control">
+        <option value="">-- Pilih Pasien --</option>
+        <option value="Pasien A">Pasien A (NIM: 100xxxx)</option>
+        <option value="Pasien B">Pasien B (NIM: 100yyyy)</option>
+      </select>
+    </div>
+    
+    <div class="result-box" id="review-rm-detail" style="display: none; margin-top: 20px;"></div>
+    
+    <button class="btn btn-outline btn-full" style="margin-top: 20px;" onclick="showScreen('menu-kepala')">
+      <i class="fas fa-arrow-left"></i> Kembali
+    </button>
+  </div>
+
+  <!-- ===================== SCREEN 29: LAPORAN AKHIR ===================== -->
+  <div id="kepala-laporan-akhir" class="card" style="display: none;">
+    <h2 class="card-title">Laporan Akhir Klinik</h2>
+    
+    <div class="laporan-card">
+      <h4>Ringkasan Operasional Bulanan</h4>
+      <p>Total Pendapatan: <strong>Rp 55.450.000</strong></p>
+      <p>Total Pasien Dilayani: <strong>358 Orang</strong></p>
+      <p>Beban Operasional: <strong>Rp 32.100.000</strong></p>
+    </div>
+    
+    <div class="laporan-card">
+      <h4>Grafik Pertumbuhan (Simulasi)</h4>
+      <div style="text-align: center; margin: 20px 0;">
+        <img src="https://img.icons8.com/color/200/bar-chart-increasing.png" alt="grafik" style="width: 200px; height: auto;">
+      </div>
+      <p style="text-align: center;">Target pendapatan tercapai <strong>110%</strong>.</p>
+    </div>
+    
+    <button class="btn btn-outline btn-full" style="margin-top: 20px;" onclick="showScreen('menu-kepala')">
+      <i class="fas fa-arrow-left"></i> Kembali
+    </button>
+  </div>
+
+</main>
+
+<!-- Footer -->
+<footer class="main-footer">
+  <div class="container">
+    <div class="footer-content">
+      <div>
+        <div class="footer-logo">
+          <div class="logo-icon">
+            <i class="fas fa-heartbeat"></i>
+          </div>
+          <div class="logo-text">Klinik<span>Paramita</span></div>
+        </div>
+        <p class="footer-about">Layanan kesehatan digital terpercaya dengan tim dokter profesional dan fasilitas lengkap untuk kesehatan optimal Anda.</p>
+      </div>
+      
+      <div class="footer-links">
+        <h4>Tautan Cepat</h4>
+        <ul>
+          <li><a href="#" onclick="showScreen('menu-awal')">Beranda</a></li>
+          <li><a href="#" onclick="loginAsPasien()">Layanan Pasien</a></li>
+          <li><a href="#" onclick="showScreen('login-admin')">Admin System</a></li>
+          <li><a href="#" onclick="showNotification('Kontak', 'Hubungi: (021) 1234-5678 | Email: kelompok2@klinikparamita.com', 'info')">Kontak Darurat</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-contact">
+        <h4>Kontak Kami</h4>
+        <p><i class="fas fa-map-marker-alt"></i> Jl. Kesehatan No. 123, Serayu</p>
+        <p><i class="fas fa-phone"></i> (021) 1234-5678</p>
+        <p><i class="fas fa-envelope"></i> infoKelompok2@klinikparamita.com</p>
+        <p><i class="fas fa-clock"></i> Buka 24/7 untuk Darurat</p>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>&copy; 2024 Klinik Paramita Digital. Semua hak dilindungi. | Sistem Terintegrasi v2.0</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+// =========================================================
+// GLOBAL VARIABLES & STATE MANAGEMENT
+// =========================================================
+let currentUser = null;
+let selectedDoctor = null;
+let currentAntrianCount = parseInt(sessionStorage.getItem('antrian_count')) || 0;
+let totalTransaksi = parseInt(sessionStorage.getItem('total_transaksi')) || 0;
+let resepCount = parseInt(sessionStorage.getItem('resep_count')) || 0;
+let pembayaranCount = parseInt(sessionStorage.getItem('pembayaran_count')) || 0;
+
+// Data storage
+let antrianPasien = JSON.parse(sessionStorage.getItem('antrian_list')) || [];
+let resepMasuk = JSON.parse(sessionStorage.getItem('resep_masuk_list')) || [];
+let riwayatRekamMedis = JSON.parse(sessionStorage.getItem('rekam_medis_list')) || [];
+let riwayatTransaksi = JSON.parse(sessionStorage.getItem('transaksi_list')) || [];
+let tagihanPasien = JSON.parse(sessionStorage.getItem('tagihan_pasien')) || [];
+
+let obatStok = JSON.parse(sessionStorage.getItem('obat_stok')) || {
+  'Paracetamol 500mg': 150,
+  'Amoxicillin 250mg': 45,
+  'Lansoprazole 30mg': 90,
+  'Vitamin C 1000mg': 200
+};
+
+// Variables for current selections
+let selectedTagihanId = null;
+let selectedTagihanForKonfirmasi = null;
+let obatDipilih = "";
+let nomorAntrianResep = "";
+
+// Track pasien yang sudah selesai pemeriksaan untuk tampilkan barcode
+let pasienSelesaiPemeriksaan = JSON.parse(sessionStorage.getItem('pasien_selesai')) || [];
+
+// Doctors data
+const doctors = [
+  {
+    id: 1,
+    name: "dr. Sinta Pratiwi",
+    specialization: "Anak",
+    experience: "10 Tahun",
+    schedule: "Senin & Rabu",
+    slots: "09:00 - 12:00",
+    image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80",
+    rating: 4.9
+  },
+  {
+    id: 2,
+    name: "dr. Arif Nugroho",
+    specialization: "Penyakit Dalam",
+    experience: "12 Tahun",
+    schedule: "Selasa & Kamis",
+    slots: "13:00 - 16:00",
+    image: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80",
+    rating: 4.8
+  },
+  {
+    id: 3,
+    name: "dr. Maya Lestari",
+    specialization: "Dokter Umum",
+    experience: "7 Tahun",
+    schedule: "Setiap Hari",
+    slots: "08:00 - 14:00",
+    image: " https://circular-ivory-ybskhctohq-0wwq4nvsr3.edgeone.dev/IMG_20251202_152529.jpg ",
+    rating: 4.7
+  },
+  {
+    id: 4,
+    name: "dr. Rudi Hartono",
+    specialization: "Bedah",
+    experience: "15 Tahun",
+    schedule: "Senin & Jumat",
+    slots: "14:00 - 18:00",
+    image: "https://images.unsplash.com/photo-1537368910025-700350fe46c7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80",
+    rating: 4.9
+  },
+  {
+    id: 5,
+    name: "dr. Siti Rahmawati",
+    specialization: "Kandungan",
+    experience: "9 Tahun",
+    schedule: "Selasa, Kamis",
+    slots: "10:00 - 15:00",
+    image: "https://official-emerald-n2r6y4qdnh-poj7mfwejo.edgeone.dev/IMG_20251202_152618.jpg ",
+    rating: 4.8
+  }
+];
+
+// =========================================================
+// UTILITY FUNCTIONS
+// =========================================================
+function playSound(soundId) {
+  const audio = document.getElementById(soundId);
+  if (audio) {
+    audio.currentTime = 0;
+    audio.play().catch(e => console.log("Audio play failed:", e));
+  }
+}
+
+function showNotification(title, message, type = 'info', duration = 5000) {
+  playSound('notificationSound');
+  
+  const notification = {
+    id: Date.now(),
+    title,
+    message,
+    type,
+    timestamp: new Date()
+  };
+  
+  const container = document.getElementById('notificationContainer');
+  const notificationEl = document.createElement('div');
+  notificationEl.className = `notification notification-${type}`;
+  notificationEl.id = `notification-${notification.id}`;
+  
+  const icons = {
+    success: 'fas fa-check-circle',
+    error: 'fas fa-exclamation-circle',
+    warning: 'fas fa-exclamation-triangle',
+    info: 'fas fa-info-circle'
+  };
+  
+  notificationEl.innerHTML = `
+    <div class="notification-icon">
+      <i class="${icons[type]}"></i>
+    </div>
+    <div class="notification-content">
+      <div class="notification-title">${title}</div>
+      <div class="notification-message">${message}</div>
+    </div>
+    <button class="notification-close" onclick="removeNotification(${notification.id})">
+      <i class="fas fa-times"></i>
+    </button>
+  `;
+  
+  container.appendChild(notificationEl);
+  
+  // Animate in
+  setTimeout(() => {
+    notificationEl.classList.add('show');
+  }, 10);
+  
+  // Auto remove after duration
+  setTimeout(() => {
+    removeNotification(notification.id);
+  }, duration);
+}
+
+function removeNotification(id) {
+  const notificationEl = document.getElementById(`notification-${id}`);
+  if (notificationEl) {
+    notificationEl.classList.remove('show');
+    setTimeout(() => {
+      notificationEl.remove();
+    }, 500);
+  }
+}
+
+// =========================================================
+// SCREEN MANAGEMENT - MODIFIED TO REMOVE ANIMATION EFFECTS
+// =========================================================
+function showScreen(screenId) {
+  playSound('clickSound');
+  
+  // Hide all screens
+  const screens = [
+    'menu-awal', 'login-pasien', 'login-admin', 'menu-pasien', 'dokter-page',
+    'konfirmasi-janji', 'halaman-antrian', 'halaman-hasil', 'halaman-bayar',
+    'halaman-kwitansi', 'halaman-resep', 'halaman-cek-obat', 'halaman-ambil-resep',
+    'menu-admin', 'menu-dokter', 'dokter-data-pasien', 'dokter-rekam-medis',
+    'menu-apotik', 'apotik-stok', 'apotik-resep-masuk', 'apotik-laporan',
+    'menu-administrasi', 'adminis-buat-tagihan', 'adminis-catat-bayar', 'adminis-laporan-transaksi',
+    'menu-kepala', 'kepala-evaluasi', 'kepala-rekam-medis', 'kepala-laporan-akhir'
+  ];
+  
+  screens.forEach(screen => {
+    const el = document.getElementById(screen);
+    if (el) {
+      el.style.opacity = '0';
+      setTimeout(() => {
+        el.style.display = 'none';
+        el.style.opacity = '1';
+      }, 10);
+    }
+  });
+  
+  // Show selected screen
+  setTimeout(() => {
+    const screen = document.getElementById(screenId);
+    if (screen) {
+      screen.style.display = 'block';
+      
+      // Load content for specific screens
+      switch(screenId) {
+        case 'dokter-page':
+          loadDokterList();
+          break;
+        case 'halaman-bayar':
+          renderTagihanPasien();
+          break;
+        case 'halaman-cek-obat':
+          renderStokPasien();
+          break;
+        case 'menu-admin':
+          updateAdminDashboard();
+          break;
+        case 'dokter-data-pasien':
+          renderAntrianDokter();
+          break;
+        case 'apotik-stok':
+          renderStokAdmin();
+          break;
+        case 'apotik-resep-masuk':
+          renderResepApotik();
+          break;
+        case 'apotik-laporan':
+          renderLaporanApotik();
+          break;
+        case 'adminis-buat-tagihan':
+          loadDaftarPasien();
+          break;
+        case 'adminis-catat-bayar':
+          renderTagihanBelumBayar();
+          break;
+        case 'adminis-laporan-transaksi':
+          renderLaporanTransaksi();
+          break;
+        case 'kepala-rekam-medis':
+          loadReviewRekamMedis();
+          break;
+      }
+      
+      // Scroll to top
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }, 20);
+}
+
+// =========================================================
+// PASIEN FUNCTIONS
+// =========================================================
+function submitPasien() {
+  const nama = document.getElementById('pNama').value.trim();
+  const nim = document.getElementById('pNIM').value.trim();
+  const alamat = document.getElementById('pAlamat').value.trim();
+  
+  if (!nama) {
+    showNotification("Perhatian", "Nama tidak boleh kosong!", 'warning');
+    return;
+  }
+  
+  if (nim.length !== 3) {
+    showNotification("Perhatian", "NIM harus 3 digit!", 'warning');
+    return;
+  }
+  
+  // Save patient data
+  sessionStorage.setItem('pasien_nama', nama);
+  sessionStorage.setItem('pasien_nim', nim);
+  sessionStorage.setItem('pasien_alamat', alamat);
+  
+  showNotification("Berhasil", `Registrasi berhasil! Selamat datang, ${nama}`, 'success');
+  
+  // Update patient name in menu
+  const pasienNamaEl = document.getElementById('pasien-nama');
+  if (pasienNamaEl) {
+    pasienNamaEl.textContent = nama;
+  }
+  
+  setTimeout(() => {
+    showScreen('menu-pasien');
+  }, 1000);
+}
+
+function loginAsPasien() {
+  const savedNama = sessionStorage.getItem('pasien_nama');
+  if (savedNama) {
+    const pasienNamaEl = document.getElementById('pasien-nama');
+    if (pasienNamaEl) {
+      pasienNamaEl.textContent = savedNama;
+    }
+    showScreen('menu-pasien');
+  } else {
+    showScreen('login-pasien');
+  }
+}
+
+// =========================================================
+// ADMIN FUNCTIONS
+// =========================================================
+function submitAdmin() {
+  const username = document.getElementById('aUser').value.trim();
+  const password = document.getElementById('aPass').value.trim();
+  
+  if (username === 'kelompok 2' && password === 'byte') {
+    showNotification("Login Berhasil", "Selamat datang, Administrator!", 'success');
+    setTimeout(() => {
+      showScreen('menu-admin');
+    }, 1000);
+  } else {
+    showNotification("Login Gagal", "Username atau password salah!", 'error');
+  }
+}
+
+// =========================================================
+// DOKTER & JANJI TEMU FUNCTIONS
+// =========================================================
+function loadDokterList() {
+  const container = document.getElementById('dokter-list-container');
+  if (!container) return;
+  
+  container.innerHTML = doctors.map(doctor => `
+    <div class="dokter-card" data-nama="${doctor.name}" data-spesialis="${doctor.specialization}" data-jadwal="${doctor.schedule}" data-slots="${doctor.slots}" onclick="pilihDokter(this)">
+      <img src="${doctor.image}" alt="${doctor.name}">
+      <div class="dokter-info">
+        <h4>${doctor.name}</h4>
+        <p><b>Spesialis:</b> ${doctor.specialization}</p>
+        <p><b>Jadwal:</b> ${doctor.schedule} — ${doctor.slots}</p>
+        <p><b>Pengalaman:</b> ${doctor.experience}</p>
+        <div style="display: flex; align-items: center; gap: 4px; margin-top: 8px;">
+          <i class="fas fa-star" style="color: var(--warning);"></i>
+          <span style="font-weight: 600;">${doctor.rating}</span>
+          <span style="color: var(--dark-gray); font-size: 0.9rem; margin-left: 8px;">Rating</span>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function pilihDokter(card) {
+  selectedDoctor = {
+    nama: card.getAttribute('data-nama'),
+    spesialis: card.getAttribute('data-spesialis'),
+    jadwal: card.getAttribute('data-jadwal'),
+    slots: card.getAttribute('data-slots')
+  };
+  
+  const info = document.getElementById('infoDokter');
+  info.innerHTML = `
+    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 10px;">
+      <div style="width: 50px; height: 50px; border-radius: var(--radius-full); background: linear-gradient(135deg, var(--primary), var(--primary-light)); display: flex; align-items: center; justify-content: center; color: var(--white);">
+        <i class="fas fa-user-md"></i>
+      </div>
+      <div>
+        <h4 style="margin: 0 0 4px 0;">${selectedDoctor.nama}</h4>
+        <p style="margin: 0; color: var(--dark-gray);">${selectedDoctor.spesialis}</p>
+      </div>
+    </div>
+    <p style="margin: 0; font-size: 0.9rem;">
+      <i class="fas fa-calendar"></i> ${selectedDoctor.jadwal} | 
+      <i class="fas fa-clock"></i> ${selectedDoctor.slots}
+    </p>
+  `;
+  
+  // Populate waktu slots
+  const slotSelect = document.getElementById('slotWaktuJanji');
+  slotSelect.innerHTML = '<option value="">-- Pilih Waktu --</option>';
+  
+  // Generate time slots based on doctor's schedule
+  const timeRange = selectedDoctor.slots.split(' - ');
+  if (timeRange.length === 2) {
+    const start = timeRange[0];
+    const end = timeRange[1];
+    slotSelect.innerHTML += `<option value="${start} - ${end}">Sesuai Jadwal (${start} - ${end})</option>`;
+    
+    // Add some sample time slots
+    const slots = ['08:00', '09:00', '10:00', '11:00', '13:00', '14:00', '15:00', '16:00'];
+    slots.forEach(slot => {
+      if (slot >= start && slot <= end) {
+        slotSelect.innerHTML += `<option value="${slot}">${slot}</option>`;
+      }
+    });
+  }
+  
+  // Set min date to today
+  const today = new Date().toISOString().split('T')[0];
+  document.getElementById("tanggalJanji").setAttribute('min', today);
+  
+  showScreen('konfirmasi-janji');
+}
+
+function konfirmasiSimpan() {
+  const namaPasien = document.getElementById('namaPasienJanji').value.trim() || sessionStorage.getItem('pasien_nama') || 'Pasien Anonim';
+  const catatan = document.getElementById('catatanJanji').value.trim();
+  const tanggal = document.getElementById('tanggalJanji').value;
+  const waktu = document.getElementById('slotWaktuJanji').value;
+  
+  if (!selectedDoctor || !tanggal || !waktu) {
+    showNotification("Perhatian", "Lengkapi tanggal dan waktu janji temu!", 'warning');
+    return;
+  }
+  
+  currentAntrianCount++;
+  const kodeAntri = 'A' + currentAntrianCount;
+  
+  const antrianData = {
+    kode: kodeAntri,
+    pasien: namaPasien,
+    dokter: selectedDoctor.nama,
+    tanggal: tanggal,
+    waktuTemu: waktu,
+    catatan: catatan,
+    status: 'Menunggu'
+  };
+  
+  antrianPasien.push(antrianData);
+  persistData();
+  
+  // Update display
+  document.getElementById('nomorAntrianBox').textContent = kodeAntri;
+  const det = document.getElementById('detailAntrian');
+  det.style.display = 'block';
+  det.innerHTML = `
+    <p><b>Pasien:</b> ${namaPasien}</p>
+    <p><b>Dokter:</b> ${selectedDoctor.nama}</p>
+    <p><b>Tanggal:</b> ${tanggal}</p>
+    <p><b>Waktu:</b> ${waktu}</p>
+    ${catatan ? `<p><b>Catatan:</b> ${catatan}</p>` : ''}
+  `;
+  
+  showNotification("Berhasil", `Janji temu berhasil! Kode: ${kodeAntri}`, 'success');
+  showScreen('halaman-antrian');
+}
+
+// =========================================================
+// HASIL PEMERIKSAAN FUNCTIONS - MODIFIED FOR BARCODE LOGIC
+// =========================================================
+function showHasilPemeriksaan() {
+  const namaPasien = sessionStorage.getItem('pasien_nama') || 'Pasien Anonim';
+  
+  // Check if patient has completed examination
+  const hasCompletedExam = pasienSelesaiPemeriksaan.includes(namaPasien);
+  
+  if (hasCompletedExam) {
+    // Show barcode if examination is complete
+    showScreen('halaman-hasil');
+    
+    setTimeout(() => {
+      document.getElementById('hasil-content').innerHTML = `
+        <p style="color: var(--dark-gray); text-align: center; margin-bottom: 20px;">
+          Scan barcode di bawah untuk melihat hasil pemeriksaan dan riwayat kunjungan medis.
+        </p>
+        
+        <div style="text-align: center; margin: 30px 0;">
+          <img src="https://attractive-amethyst-3h7kxnr7ar-9zi0ra95a6.edgeone.dev/Usrk0N_qrcode.png" 
+               alt="barcode" style="width: 200px; height: 200px; border-radius: var(--radius-md); box-shadow: var(--shadow-md);">
+          <p style="margin-top: 10px; color: var(--primary); font-weight: 600;">Barcode Pasien</p>
+        </div>
+        
+        <div class="result-box">
+          <p style="margin: 0; text-align: center;">
+            <i class="fas fa-info-circle"></i> Barcode ini berlaku untuk akses riwayat medis digital
+          </p>
+          <p style="margin: 10px 0 0 0; text-align: center; font-size: 0.9rem;">
+            Terakhir diperbarui: ${new Date().toLocaleDateString()}
+          </p>
+        </div>
+      `;
+    }, 50);
+  } else {
+    // Show message that examination is not complete
+    showScreen('halaman-hasil');
+    
+    setTimeout(() => {
+      document.getElementById('hasil-content').innerHTML = `
+        <div style="text-align: center; padding: 40px 20px;">
+          <div style="width: 80px; height: 80px; background: rgba(239, 68, 68, 0.1); border-radius: var(--radius-full); display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;">
+            <i class="fas fa-exclamation-triangle" style="font-size: 2rem; color: var(--danger);"></i>
+          </div>
+          <h3 style="color: var(--dark); margin-bottom: 15px;">Belum Ada Hasil Pemeriksaan</h3>
+          <p style="color: var(--dark-gray); margin-bottom: 25px;">
+            Hasil pemeriksaan Anda belum tersedia. 
+            Silakan lakukan janji temu dengan dokter terlebih dahulu dan tunggu hingga proses pemeriksaan selesai.
+          </p>
+          <div class="result-box" style="max-width: 400px; margin: 0 auto;">
+            <p style="margin: 0; text-align: center;">
+              <i class="fas fa-info-circle"></i> Barcode akan tersedia setelah pemeriksaan selesai
+            </p>
+          </div>
+        </div>
+      `;
+    }, 50);
+  }
+}
+
+// =========================================================
+// RESEP & OBAT FUNCTIONS
+// =========================================================
+function tampilkanObat() {
+  const pilih = document.getElementById("pilihanObat").value;
+  const boxHasil = document.getElementById("hasilResep");
+  const boxWarning = document.getElementById("interaksiWarning");
+  const loadingBar = document.getElementById("loadingObat");
+  
+  if (pilih === "") {
+    boxHasil.style.display = "none";
+    boxWarning.style.display = "none";
+    return;
+  }
+  
+  obatDipilih = pilih;
+  boxHasil.style.display = "none";
+  boxWarning.style.display = "none";
+  loadingBar.style.display = "block";
+  
+  setTimeout(() => {
+    loadingBar.style.display = "none";
+    nomorAntrianResep = generateNomorAntrianResep();
+    
+    boxHasil.innerHTML = `
+      <p><b>Obat yang dipilih:</b> ${pilih}</p>
+      <div style="text-align: center; margin: 15px 0; padding: 10px; background: rgba(79, 70, 229, 0.1); border-radius: var(--radius-md);">
+        <p style="margin: 0; font-size: 0.9rem; color: var(--dark-gray);">Nomor Antrian Apotek</p>
+        <div style="font-size: 1.5rem; font-weight: bold; color: var(--primary);">${nomorAntrianResep}</div>
+      </div>
+    `;
+    boxHasil.style.display = "block";
+    
+    if (pilih.includes("Amoxicillin")) {
+      boxWarning.innerHTML = `
+        <h4 style="margin-top: 0; color: var(--danger);">
+          <i class="fas fa-exclamation-triangle"></i> Peringatan Interaksi Obat
+        </h4>
+        <p style="margin: 0;">Obat ini mungkin berinteraksi dengan obat <strong>pengencer darah</strong> atau <strong>suplemen kalsium</strong> tertentu. Konsultasikan dengan dokter/apoteker Anda!</p>
+      `;
+      boxWarning.style.display = "block";
+    }
+  }, 1500);
+}
+
+function generateNomorAntrianResep() {
+  const huruf = "R";
+  const angka = Math.floor(100 + Math.random() * 900);
+  return huruf + angka;
+}
+
+function ambilResep() {
+  if (obatDipilih === "" || nomorAntrianResep === "") {
+    showNotification("Perhatian", "Pilih obat terlebih dahulu!", 'warning');
+    return;
+  }
+  
+  document.getElementById("namaObatDiambil").textContent = obatDipilih;
+  document.getElementById("tampilNomorAntrian").innerHTML = `
+    <div style="font-size: 1.2rem; color: var(--dark-gray);">Nomor Antrian Apotek</div>
+    <div style="font-size: 2.5rem; font-weight: bold; color: var(--primary); margin: 10px 0;">${nomorAntrianResep}</div>
+  `;
+  
+  showScreen('halaman-ambil-resep');
+  showNotification("Resep Siap", `Nomor antrian ${nomorAntrianResep} telah dicetak`, 'success');
+}
+
+function renderStokPasien() {
+  const container = document.getElementById('stok-info-box');
+  if (!container) return;
+  
+  let html = '<h4 style="margin-top: 0;">Informasi Stok Obat</h4>';
+  for (const [obat, stok] of Object.entries(obatStok)) {
+    let status = '';
+    let color = '';
+    
+    if (stok > 100) {
+      status = '✓ Banyak';
+      color = 'var(--secondary)';
+    } else if (stok > 20) {
+      status = '✓ Tersedia';
+      color = 'var(--secondary)';
+    } else {
+      status = '⚠️ Terbatas';
+      color = 'var(--warning)';
+    }
+    
+    html += `
+      <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--light-gray);">
+        <span>${obat}</span>
+        <span style="font-weight: 600; color: ${color};">${status} (${stok})</span>
+      </div>
+    `;
+  }
+  
+  container.innerHTML = html;
+}
+
+// =========================================================
+// PEMBAYARAN SYSTEM
+// =========================================================
+function renderTagihanPasien() {
+  const container = document.getElementById('tagihan-list');
+  const pasienNama = sessionStorage.getItem('pasien_nama') || 'Pasien Anonim';
+  
+  const tagihanSaya = tagihanPasien.filter(t => 
+    t.pasien === pasienNama && t.status === 'Belum Dibayar'
+  );
+  
+  container.innerHTML = '';
+  
+  if (tagihanSaya.length === 0) {
+    container.innerHTML = `
+      <div class="result-box" id="no-tagihan-msg">
+        <p style="margin: 0; text-align: center;">Belum ada tagihan yang perlu dibayar.</p>
+      </div>
+    `;
+    document.getElementById('form-bayar').style.display = 'none';
+    return;
+  }
+  
+  tagihanSaya.forEach(tagihan => {
+    const row = document.createElement('div');
+    row.className = 'antrian-row';
+    row.onclick = () => pilihTagihan(tagihan);
+    row.innerHTML = `
+      <div style="flex: 1;">
+        <div class="antrian-number">T${tagihan.id}</div>
+        <div class="antrian-info">
+          <b>${tagihan.jenis}</b>
+          <span>${tagihan.keterangan || 'Tanpa keterangan'}</span>
+          <span>Tanggal: ${tagihan.tanggal}</span>
+        </div>
+      </div>
+      <div style="text-align: right;">
+        <div style="font-size: 1.2rem; font-weight: bold; color: var(--primary);">
+          Rp ${tagihan.jumlah.toLocaleString('id-ID')}
+        </div>
+        <span style="font-size: 0.8rem; color: var(--danger); font-weight: 600;">Belum Dibayar</span>
+      </div>
+    `;
+    container.appendChild(row);
+  });
+  
+  document.getElementById('form-bayar').style.display = 'none';
+}
+
+function pilihTagihan(tagihan) {
+  selectedTagihanId = tagihan.id;
+  
+  document.getElementById('detail-tagihan-selected').innerHTML = `
+    <p><b>Jenis:</b> ${tagihan.jenis}</p>
+    <p><b>Keterangan:</b> ${tagihan.keterangan || '-'}</p>
+    <p><b>Tanggal:</b> ${tagihan.tanggal}</p>
+    <p><b>Pasien:</b> ${tagihan.pasien}</p>
+  `;
+  
+  document.getElementById('jumlah-tagihan-selected').textContent = 
+    `Rp ${tagihan.jumlah.toLocaleString('id-ID')}`;
+  
+  document.getElementById('form-bayar').style.display = 'block';
+}
+
+function batalBayar() {
+  selectedTagihanId = null;
+  document.getElementById('form-bayar').style.display = 'none';
+}
+
+function bayarTagihan() {
+  if (!selectedTagihanId) {
+    showNotification("Perhatian", "Pilih tagihan terlebih dahulu!", 'warning');
+    return;
+  }
+  
+  const tagihanIndex = tagihanPasien.findIndex(t => t.id === selectedTagihanId);
+  if (tagihanIndex === -1) {
+    showNotification("Error", "Tagihan tidak ditemukan!", 'error');
+    return;
+  }
+  
+  const tagihan = tagihanPasien[tagihanIndex];
+  
+  // Update status
+  tagihanPasien[tagihanIndex].status = 'Menunggu Konfirmasi';
+  tagihanPasien[tagihanIndex].tanggalBayar = new Date().toLocaleDateString();
+  
+  // Add to transaction history
+  riwayatTransaksi.push({
+    id: 'T' + Date.now(),
+    pasien: tagihan.pasien,
+    jumlah: tagihan.jumlah,
+    tanggal: new Date().toLocaleString(),
+    dicatat: false,
+    jenis: 'Pembayaran Tagihan',
+    keterangan: tagihan.jenis
+  });
+  
+  persistData();
+  
+  // Reset form
+  selectedTagihanId = null;
+  document.getElementById('form-bayar').style.display = 'none';
+  
+  showNotification(
+    "Pembayaran Dikirim", 
+    `Tagihan T${tagihan.id} sebesar Rp ${tagihan.jumlah.toLocaleString('id-ID')} telah dikirim untuk konfirmasi admin.`, 
+    'success'
+  );
+  
+  setTimeout(() => {
+    renderTagihanPasien();
+    document.getElementById('hasilBayarBox').innerHTML = `
+      <div class="result-box">
+        <h4 style="margin-top: 0; color: var(--secondary);">
+          <i class="fas fa-check-circle"></i> Pembayaran Dikirim
+        </h4>
+        <p>Tagihan T${tagihan.id} sebesar <strong>Rp ${tagihan.jumlah.toLocaleString('id-ID')}</strong> telah dikirim untuk konfirmasi admin.</p>
+        <p>Status: <span style="color: var(--warning); font-weight: bold;">Menunggu Konfirmasi</span></p>
+      </div>
+    `;
+  }, 500);
+}
+
+// =========================================================
+// ADMIN DASHBOARD FUNCTIONS
+// =========================================================
+function updateAdminDashboard() {
+  const activeAntrian = antrianPasien.filter(a => a.status === 'Menunggu').length;
+  const totalPemasukanDicatat = riwayatTransaksi
+    .filter(t => t.dicatat)
+    .reduce((sum, t) => sum + t.jumlah, 0);
+  
+  document.getElementById('stat-antrian').textContent = activeAntrian + ' Antrian';
+  document.getElementById('stat-bayar').textContent = 'Rp ' + totalPemasukanDicatat.toLocaleString('id-ID');
+  document.getElementById('stat-resep').textContent = resepMasuk.filter(r => r.status === 'Baru').length + ' Resep';
+  
+  persistData();
+}
+
+// =========================================================
+// DOKTER ADMIN FUNCTIONS - MODIFIED TO TRACK COMPLETED PATIENTS
+// =========================================================
+function renderAntrianDokter() {
+  const container = document.getElementById('antrian-list');
+  const filteredAntrian = antrianPasien.filter(a => a.status === 'Menunggu');
+  
+  container.innerHTML = '';
+  
+  if (filteredAntrian.length === 0) {
+    container.innerHTML = `
+      <div class="result-box" id="no-antrian-msg">
+        <p style="margin: 0; text-align: center;">Belum ada antrian pasien hari ini.</p>
+      </div>
+    `;
+    return;
+  }
+  
+  filteredAntrian.forEach(antrian => {
+    const row = document.createElement('div');
+    row.className = 'antrian-row';
+    row.onclick = () => startPemeriksaan(antrian.kode);
+    row.innerHTML = `
+      <span class="antrian-number">${antrian.kode}</span>
+      <div class="antrian-info">
+        <b>${antrian.pasien}</b>
+        <span>Dokter: ${antrian.dokter}</span>
+        <span>Waktu: ${antrian.waktuTemu}</span>
+      </div>
+      <button class="btn btn-secondary btn-sm" onclick="event.stopPropagation(); startPemeriksaan('${antrian.kode}')">
+        <i class="fas fa-play"></i> Mulai
+      </button>
+    `;
+    container.appendChild(row);
+  });
+}
+
+function startPemeriksaan(kodeAntri) {
+  const antrianIndex = antrianPasien.findIndex(a => a.kode === kodeAntri && a.status === 'Menunggu');
+  if (antrianIndex !== -1) {
+    const pasien = antrianPasien[antrianIndex];
+    antrianPasien[antrianIndex].status = 'Diproses';
+    persistData();
+    
+    document.getElementById('rekam-pasien-nama').textContent = `${pasien.pasien} (${pasien.kode})`;
+    document.getElementById('diagnosis').value = '';
+    document.getElementById('resep-obat').value = '';
+    document.getElementById('tindakan').value = '';
+    
+    showNotification("Pemeriksaan Dimulai", `Mulai pemeriksaan untuk ${pasien.pasien}`, 'info');
+    showScreen('dokter-rekam-medis');
+  }
+}
+
+function simpanRekamMedis() {
+  const namaPasien = document.getElementById('rekam-pasien-nama').textContent;
+  const kodeAntri = namaPasien.match(/\((.*?)\)/)[1];
+  const diagnosis = document.getElementById('diagnosis').value.trim();
+  const resep = document.getElementById('resep-obat').value.trim();
+  const tindakan = document.getElementById('tindakan').value.trim();
+  
+  if (!diagnosis || !resep) {
+    showNotification("Perhatian", "Diagnosis dan Resep Obat wajib diisi!", 'warning');
+    return;
+  }
+  
+  // Save medical record
+  const rmData = {
+    tanggal: new Date().toLocaleDateString(),
+    pasien: namaPasien.split(' (')[0],
+    dokter: 'dr. Rudi Hartono',
+    diagnosis: diagnosis,
+    resep: resep,
+    tindakan: tindakan
+  };
+  riwayatRekamMedis.push(rmData);
+  
+  // Send prescription to pharmacy
+  const resepList = resep.split(',').map(item => item.trim());
+  resepMasuk.push({
+    id: 'R' + (++resepCount),
+    pasien: rmData.pasien,
+    obat: resepList,
+    status: 'Baru',
+    waktu: new Date().toLocaleTimeString()
+  });
+  
+  // Update queue status
+  const antrianIndex = antrianPasien.findIndex(a => a.kode === kodeAntri);
+  if (antrianIndex !== -1) {
+    antrianPasien[antrianIndex].status = 'Selesai';
+  }
+  
+  // Add patient to completed examination list for barcode access
+  const patientName = rmData.pasien;
+  if (!pasienSelesaiPemeriksaan.includes(patientName)) {
+    pasienSelesaiPemeriksaan.push(patientName);
+  }
+  
+  persistData();
+  showNotification("Berhasil", `Rekam Medis & Resep (R${resepCount}) tersimpan!`, 'success');
+  showScreen('menu-dokter');
+}
+
+// =========================================================
+// APOTIK FUNCTIONS
+// =========================================================
+function renderStokAdmin() {
+  const container = document.getElementById('stok-obat-list');
+  container.innerHTML = '';
+  
+  for (const [obat, stok] of Object.entries(obatStok)) {
+    const row = document.createElement('div');
+    row.className = 'stok-row';
+    row.innerHTML = `
+      <span style="font-weight: 600;">${obat}</span>
+      <div class="stok-controls">
+        <button onclick="updateStok('${obat}', -1)">-</button>
+        <span class="stok-qty" id="stok-${obat.replace(/ /g, '-').replace(/\./g, '')}">${stok}</span>
+        <button onclick="updateStok('${obat}', 1)">+</button>
+      </div>
+    `;
+    container.appendChild(row);
+  }
+}
+
+function updateStok(obatName, amount) {
+  let currentStok = obatStok[obatName];
+  currentStok += amount;
+  
+  if (currentStok < 0) {
+    showNotification("Error", `Stok ${obatName} tidak bisa di bawah 0!`, 'error');
+    return;
+  }
+  
+  obatStok[obatName] = currentStok;
+  
+  const stokId = `stok-${obatName.replace(/ /g, '-').replace(/\./g, '')}`;
+  const stokElement = document.getElementById(stokId);
+  if (stokElement) {
+    stokElement.textContent = currentStok;
+    showNotification("Stok Diperbarui", `Stok ${obatName} menjadi ${currentStok}`, 'info');
+  }
+  
+  persistData();
+}
+
+function renderResepApotik() {
+  const container = document.getElementById('resep-antrian-list');
+  const filteredResep = resepMasuk.filter(r => r.status === 'Baru');
+  
+  container.innerHTML = '';
+  
+  if (filteredResep.length === 0) {
+    container.innerHTML = `
+      <div class="result-box" id="no-resep-msg">
+        <p style="margin: 0; text-align: center;">Belum ada resep yang perlu disiapkan.</p>
+      </div>
+    `;
+    return;
+  }
+  
+  filteredResep.forEach(resep => {
+    const row = document.createElement('div');
+    row.className = 'antrian-row';
+    row.style.borderLeft = '5px solid var(--accent)';
+    row.innerHTML = `
+      <span class="antrian-number">${resep.id}</span>
+      <div class="antrian-info">
+        <b>${resep.pasien}</b>
+        <span>Resep: ${resep.obat.join('; ')}</span>
+        <span>Waktu Masuk: ${resep.waktu}</span>
+      </div>
+      <button class="btn btn-danger btn-sm" onclick="serahkanObat('${resep.id}')">
+        <i class="fas fa-check"></i> Serahkan
+      </button>
+    `;
+    container.appendChild(row);
+  });
+}
+
+function serahkanObat(resepId) {
+  const resepIndex = resepMasuk.findIndex(r => r.id === resepId);
+  
+  if (resepIndex !== -1) {
+    const resep = resepMasuk[resepIndex];
+    
+    // Check stock
+    let stockSufficient = true;
+    resep.obat.forEach(item => {
+      const match = item.match(/([a-zA-Z\s]+) \d{3}mg/);
+      const obatNama = match ? match[1].trim() + ' 500mg' : 'Paracetamol 500mg';
+      
+      if (obatStok[obatNama] === undefined || obatStok[obatNama] < 1) {
+        stockSufficient = false;
+      }
+    });
+    
+    if (!stockSufficient) {
+      showNotification("Stok Tidak Cukup", `Stok obat tidak cukup untuk resep ${resepId}!`, 'error');
+      return;
+    }
+    
+    // Reduce stock
+    for (let item of resep.obat) {
+      const match = item.match(/([a-zA-Z\s]+) \d{3}mg/);
+      const obatNama = match ? match[1].trim() + ' 500mg' : 'Paracetamol 500mg';
+      if (obatStok[obatNama] !== undefined) {
+        obatStok[obatNama] -= 1;
+      }
+    }
+    
+    resepMasuk[resepIndex].status = 'Selesai';
+    persistData();
+    
+    showNotification("Obat Diserahkan", `Obat untuk ${resep.pasien} telah diserahkan.`, 'success');
+    renderResepApotik();
+  }
+}
+
+function renderLaporanApotik() {
+  // Critical stock
+  const kritisList = document.getElementById('laporan-stok-kritis');
+  kritisList.innerHTML = '';
+  
+  Object.entries(obatStok).filter(([, stok]) => stok < 50).forEach(([obat, stok]) => {
+    kritisList.innerHTML += `<li>${obat}: <strong>${stok}</strong> unit</li>`;
+  });
+  
+  if (kritisList.children.length === 0) {
+    kritisList.innerHTML = '<li>Semua stok aman.</li>';
+  }
+  
+  // Prescription stats
+  document.getElementById('stat-resep-terima').textContent = resepCount;
+  
+  // Most popular drug (simple calculation)
+  const obatHit = {};
+  resepMasuk.filter(r => r.status === 'Selesai').forEach(r => {
+    r.obat.forEach(item => {
+      const match = item.match(/([a-zA-Z\s]+) \d{3}mg/);
+      const obatNama = match ? match[1].trim() : 'Lain-lain';
+      obatHit[obatNama] = (obatHit[obatNama] || 0) + 1;
+    });
+  });
+  
+  let laris = '-';
+  let maxHit = 0;
+  for (const [obat, hit] of Object.entries(obatHit)) {
+    if (hit > maxHit) {
+      maxHit = hit;
+      laris = obat;
+    }
+  }
+  
+  document.getElementById('stat-obat-laris').textContent = laris;
+}
+
+// =========================================================
+// ADMINISTRASI FUNCTIONS
+// =========================================================
+function loadDaftarPasien() {
+  const select = document.getElementById('select-pasien-tagihan');
+  select.innerHTML = '<option value="">-- Pilih Pasien --</option>';
+  
+  const semuaPasien = new Set();
+  
+  // From queue
+  antrianPasien.forEach(a => {
+    if (a.pasien && a.pasien !== 'Pasien Anonim') {
+      semuaPasien.add(a.pasien);
+    }
+  });
+  
+  // From medical records
+  riwayatRekamMedis.forEach(rm => {
+    if (rm.pasien) {
+      semuaPasien.add(rm.pasien);
+    }
+  });
+  
+  // Add patients from session storage
+  const pasienAktif = sessionStorage.getItem('pasien_nama');
+  if (pasienAktif && pasienAktif !== 'Pasien Anonim') {
+    semuaPasien.add(pasienAktif);
+  }
+  
+  // Add options
+  semuaPasien.forEach(pasien => {
+    select.innerHTML += `<option value="${pasien}">${pasien}</option>`;
+  });
+  
+  // Reset form
+  document.getElementById('jumlah-tagihan').value = '';
+  document.getElementById('keterangan-tagihan').value = '';
+  document.getElementById('hasil-buat-tagihan').style.display = 'none';
+}
+
+function buatTagihanBaru() {
+  const pasien = document.getElementById('select-pasien-tagihan').value;
+  const jenis = document.getElementById('jenis-tagihan').value;
+  const jumlah = parseInt(document.getElementById('jumlah-tagihan').value);
+  const keterangan = document.getElementById('keterangan-tagihan').value.trim();
+  
+  if (!pasien) {
+    showNotification("Perhatian", "Pilih pasien terlebih dahulu!", 'warning');
+    return;
+  }
+  
+  if (!jumlah || jumlah < 1000) {
+    showNotification("Perhatian", "Jumlah tagihan minimal Rp 1.000", 'warning');
+    return;
+  }
+  
+  // Generate invoice ID
+  const tagihanId = tagihanPasien.length + 1;
+  
+  // Create invoice object
+  const tagihanBaru = {
+    id: tagihanId,
+    pasien: pasien,
+    jenis: jenis,
+    jumlah: jumlah,
+    keterangan: keterangan,
+    tanggal: new Date().toLocaleDateString(),
+    status: 'Belum Dibayar',
+    dibuatOleh: 'Administrasi'
+  };
+  
+  // Add to array
+  tagihanPasien.push(tagihanBaru);
+  persistData();
+  
+  // Reset form
+  document.getElementById('select-pasien-tagihan').value = '';
+  document.getElementById('jumlah-tagihan').value = '';
+  document.getElementById('keterangan-tagihan').value = '';
+  
+  // Show result
+  const hasilDiv = document.getElementById('hasil-buat-tagihan');
+  hasilDiv.style.display = 'block';
+  hasilDiv.innerHTML = `
+    <h4 style="margin-top: 0; color: var(--secondary);">
+      <i class="fas fa-check-circle"></i> Tagihan Berhasil Dibuat
+    </h4>
+    <p><b>Kode:</b> T${tagihanId}</p>
+    <p><b>Pasien:</b> ${pasien}</p>
+    <p><b>Jenis:</b> ${jenis}</p>
+    <p><b>Jumlah:</b> Rp ${jumlah.toLocaleString('id-ID')}</p>
+    <p><b>Status:</b> <span style="color: var(--danger); font-weight: 600;">Belum Dibayar</span></p>
+  `;
+  
+  showNotification(`Tagihan T${tagihanId} untuk ${pasien} berhasil dibuat.`, 'info');
+}
+
+function renderTagihanBelumBayar() {
+  const container = document.getElementById('tagihan-belum-bayar');
+  const tagihanMenunggu = tagihanPasien.filter(t => t.status === 'Menunggu Konfirmasi');
+  
+  container.innerHTML = '';
+  
+  if (tagihanMenunggu.length === 0) {
+    container.innerHTML = `
+      <div class="result-box" id="no-tagihan-admin-msg">
+        <p style="margin: 0; text-align: center;">Belum ada tagihan yang perlu dicatat.</p>
+      </div>
+    `;
+    document.getElementById('form-konfirmasi-bayar').style.display = 'none';
+    document.getElementById('hasil-catat-bayar').style.display = 'none';
+    return;
+  }
+  
+  tagihanMenunggu.forEach(tagihan => {
+    const row = document.createElement('div');
+    row.className = 'antrian-row';
+    row.style.borderLeft = '5px solid var(--warning)';
+    row.onclick = () => pilihTagihanUntukKonfirmasi(tagihan);
+    row.innerHTML = `
+      <div style="flex: 1;">
+        <div class="antrian-number">T${tagihan.id}</div>
+        <div class="antrian-info">
+          <b>${tagihan.pasien}</b>
+          <span>${tagihan.jenis}</span>
+          <span>${tagihan.keterangan || ''}</span>
+          <span style="color: var(--warning); font-weight: bold;">Menunggu Konfirmasi</span>
+        </div>
+      </div>
+      <div style="text-align: right;">
+        <div style="font-size: 1.2rem; font-weight: bold; color: var(--primary);">
+          Rp ${tagihan.jumlah.toLocaleString('id-ID')}
+        </div>
+        <span style="font-size: 0.8rem; color: var(--dark-gray);">Klik untuk konfirmasi</span>
+      </div>
+    `;
+    container.appendChild(row);
+  });
+  
+  document.getElementById('form-konfirmasi-bayar').style.display = 'none';
+  document.getElementById('hasil-catat-bayar').style.display = 'none';
+}
+
+function pilihTagihanUntukKonfirmasi(tagihan) {
+  selectedTagihanForKonfirmasi = tagihan;
+  
+  document.getElementById('detail-tagihan-konfirmasi').innerHTML = `
+    <p><b>Kode:</b> T${tagihan.id}</p>
+    <p><b>Pasien:</b> ${tagihan.pasien}</p>
+    <p><b>Jenis:</b> ${tagihan.jenis}</p>
+    <p><b>Keterangan:</b> ${tagihan.keterangan || '-'}</p>
+    <p><b>Tanggal Tagihan:</b> ${tagihan.tanggal}</p>
+  `;
+  
+  document.getElementById('jumlah-tagihan-konfirmasi').textContent = 
+    `Rp ${tagihan.jumlah.toLocaleString('id-ID')}`;
+  
+  document.getElementById('form-konfirmasi-bayar').style.display = 'block';
+}
+
+function batalKonfirmasi() {
+  selectedTagihanForKonfirmasi = null;
+  document.getElementById('form-konfirmasi-bayar').style.display = 'none';
+}
+
+function konfirmasiPembayaran() {
+  if (!selectedTagihanForKonfirmasi) {
+    showNotification("Perhatian", "Pilih tagihan terlebih dahulu!", 'warning');
+    return;
+  }
+  
+  const tagihanIndex = tagihanPasien.findIndex(t => t.id === selectedTagihanForKonfirmasi.id);
+  if (tagihanIndex === -1) {
+    showNotification("Error", "Tagihan tidak ditemukan!", 'error');
+    return;
+  }
+  
+  const tagihan = tagihanPasien[tagihanIndex];
+  
+  // Update invoice status
+  tagihanPasien[tagihanIndex].status = 'Lunas';
+  tagihanPasien[tagihanIndex].tanggalKonfirmasi = new Date().toLocaleString();
+  tagihanPasien[tagihanIndex].dikonfirmasiOleh = 'Administrasi';
+  
+  // Update transaction history
+  const transaksiIndex = riwayatTransaksi.findIndex(t => 
+    t.pasien === tagihan.pasien && 
+    t.jumlah === tagihan.jumlah && 
+    !t.dicatat &&
+    t.jenis === 'Pembayaran Tagihan'
+  );
+  
+  if (transaksiIndex !== -1) {
+    riwayatTransaksi[transaksiIndex].dicatat = true;
+    riwayatTransaksi[transaksiIndex].tanggalKonfirmasi = new Date().toLocaleString();
+  }
+  
+  // Add to total transaction
+  totalTransaksi += tagihan.jumlah;
+  pembayaranCount++;
+  
+  persistData();
+  
+  // Show result
+  const hasilDiv = document.getElementById('hasil-catat-bayar');
+  hasilDiv.style.display = 'block';
+  hasilDiv.innerHTML = `
+    <h4 style="margin-top: 0; color: var(--secondary);">
+      <i class="fas fa-check-circle"></i> Pembayaran Dikonfirmasi
+    </h4>
+    <p><b>Kode Tagihan:</b> T${tagihan.id}</p>
+    <p><b>Pasien:</b> ${tagihan.pasien}</p>
+    <p><b>Jumlah:</b> Rp ${tagihan.jumlah.toLocaleString('id-ID')}</p>
+    <p><b>Status:</b> <span style="color: var(--secondary); font-weight: bold;">LUNAS</span></p>
+    <p><b>Waktu Konfirmasi:</b> ${new Date().toLocaleString()}</p>
+  `;
+  
+  // Reset form
+  selectedTagihanForKonfirmasi = null;
+  document.getElementById('form-konfirmasi-bayar').style.display = 'none';
+  
+  showNotification(`Pembayaran tagihan T${tagihan.id} telah dikonfirmasi.`, 'success');
+  
+  // Refresh list after 2 seconds
+  setTimeout(() => {
+    renderTagihanBelumBayar();
+  }, 2000);
+}
+
+function renderLaporanTransaksi() {
+  const list = document.getElementById('lap-transaksi-list');
+  list.innerHTML = '';
+  
+  // Calculate total income from recorded transactions
+  const totalPemasukanDicatat = riwayatTransaksi
+    .filter(t => t.dicatat)
+    .reduce((sum, t) => sum + t.jumlah, 0);
+  
+  // Calculate unpaid invoices
+  const tagihanBelum = tagihanPasien.filter(t => t.status === 'Belum Dibayar').length;
+  
+  document.getElementById('lap-total-transaksi').textContent = 'Rp ' + totalPemasukanDicatat.toLocaleString('id-ID');
+  document.getElementById('lap-jumlah-bayar').textContent = riwayatTransaksi.filter(t => t.dicatat).length;
+  document.getElementById('lap-tagihan-belum').textContent = tagihanBelum + ' Tagihan';
+  
+  // Show last 5 transactions
+  riwayatTransaksi
+    .filter(t => t.dicatat)
+    .reverse()
+    .slice(0, 5)
+    .forEach(t => {
+      const status = t.dicatat ? '✅ Tercatat' : '❌ Pending';
+      const color = t.dicatat ? 'var(--secondary)' : 'var(--warning)';
+      list.innerHTML += `
+        <li style="margin-bottom: 8px; border-left: 3px solid ${color}; padding-left: 10px;">
+          <strong>${t.pasien}</strong> - Rp ${t.jumlah.toLocaleString('id-ID')}
+          <div style="font-size: 0.8rem; color: ${color};">
+            (${t.jenis || 'Pembayaran'}) ${t.tanggal}
+          </div>
+        </li>
+      `;
+    });
+  
+  if (list.children.length === 0) {
+    list.innerHTML = '<li>Belum ada transaksi tercatat.</li>';
+  }
+}
+
+// =========================================================
+// KEPALA KLINIK FUNCTIONS
+// =========================================================
+function loadReviewRekamMedis() {
+  const select = document.getElementById('review-pasien-select');
+  select.innerHTML = '<option value="">-- Pilih Pasien --</option>';
+  
+  riwayatRekamMedis.forEach(rm => {
+    select.innerHTML += `<option value="${rm.pasien}">[${rm.pasien}] - ${rm.diagnosis.substring(0, 50)}...</option>`;
+  });
+  
+  document.getElementById('review-rm-detail').style.display = 'none';
+  select.onchange = function() { displayReviewRM(this.value); };
+}
+
+function displayReviewRM(pasienNama) {
+  const detailBox = document.getElementById('review-rm-detail');
+  detailBox.style.display = 'none';
+  
+  if (pasienNama === "") return;
+  
+  const rm = riwayatRekamMedis.find(r => r.pasien === pasienNama);
+  
+  if (rm) {
+    detailBox.innerHTML = `
+      <h4 style="margin-top: 0;">Detail Rekam Medis</h4>
+      <p><b>Tanggal:</b> ${rm.tanggal}</p>
+      <p><b>Pasien:</b> ${rm.pasien}</p>
+      <p><b>Dokter:</b> ${rm.dokter}</p>
+      <hr style="border: 0; border-top: 1px solid var(--light-gray); margin: 15px 0;">
+      <p><b>Diagnosis:</b> ${rm.diagnosis}</p>
+      <p><b>Resep:</b> ${rm.resep}</p>
+      <p><b>Tindakan:</b> ${rm.tindakan}</p>
+    `;
+    detailBox.style.display = 'block';
+  } else {
+    detailBox.innerHTML = `<p style="margin: 0; color: var(--danger);">Rekam Medis tidak ditemukan.</p>`;
+    detailBox.style.display = 'block';
+  }
+}
+
+// =========================================================
+// DATA PERSISTENCE
+// =========================================================
+function persistData() {
+  sessionStorage.setItem('antrian_count', currentAntrianCount);
+  sessionStorage.setItem('total_transaksi', totalTransaksi);
+  sessionStorage.setItem('resep_count', resepCount);
+  sessionStorage.setItem('pembayaran_count', pembayaranCount);
+  sessionStorage.setItem('antrian_list', JSON.stringify(antrianPasien));
+  sessionStorage.setItem('resep_masuk_list', JSON.stringify(resepMasuk));
+  sessionStorage.setItem('rekam_medis_list', JSON.stringify(riwayatRekamMedis));
+  sessionStorage.setItem('transaksi_list', JSON.stringify(riwayatTransaksi));
+  sessionStorage.setItem('obat_stok', JSON.stringify(obatStok));
+  sessionStorage.setItem('tagihan_pasien', JSON.stringify(tagihanPasien));
+  sessionStorage.setItem('pasien_selesai', JSON.stringify(pasienSelesaiPemeriksaan));
+}
+
+// =========================================================
+// INITIALIZATION
+// =========================================================
+document.addEventListener('DOMContentLoaded', function() {
+  // Initialize data if not exists
+  if (!sessionStorage.getItem('antrian_count')) {
+    persistData();
+  }
+  
+  // Add hover effects to cards
+  document.addEventListener('mouseover', function(e) {
+    const card = e.target.closest('.card');
+    if (card) {
+      card.style.transform = 'translateY(-5px)';
+      card.style.boxShadow = 'var(--shadow-xl)';
+    }
+  });
+  
+  document.addEventListener('mouseout', function(e) {
+    const card = e.target.closest('.card');
+    if (card) {
+      card.style.transform = 'translateY(0)';
+      card.style.boxShadow = 'var(--shadow-md)';
+    }
+  });
+  
+  // Show welcome notification
+  setTimeout(() => {
+    showNotification('Selamat Datang', 'Selamat datang di Klinik Paramita Digital!', 'info');
+  }, 1000);
+});
+</script>
+</body>
+</html>
